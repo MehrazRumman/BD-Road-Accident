@@ -29,7 +29,7 @@
   * { box-sizing: border-box; }
   html, body { margin: 0; }
   body {
-    background: var(--page);
+    background: linear-gradient(180deg, #e3efe7 0, var(--page) 420px) no-repeat, var(--page);
     color: var(--ink);
     font-family: "Noto Sans Bengali", system-ui, -apple-system, "Segoe UI", sans-serif;
     font-size: 15px;
@@ -72,12 +72,15 @@
     padding: 4px 10px; font-size: 13px; color: var(--ink-2); box-shadow: 0 1px 3px rgba(0,0,0,.06);
   }
   .map-caption b { color: var(--ink); font-weight: 600; }
-  .card h2 { margin: 0 0 10px; font-size: 16px; font-weight: 600; }
+  .card h2 { margin: 0 0 10px; font-size: 16px; font-weight: 600; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .card h2::before { content: ""; width: 4px; height: 16px; border-radius: 2px; background: var(--brta); flex: none; }
   .sub { font-size: 13px; color: var(--muted); margin: -6px 0 10px; }
 
   /* Map */
   .map-card { padding: 0; overflow: hidden; position: relative; }
-  #map { height: min(74vh, 680px); min-height: 460px; background: #f6faf7; }
+  #map { height: min(74vh, 680px); min-height: 460px; background: radial-gradient(90% 80% at 45% 40%, #eef6f8 0%, #dceaee 100%); }
+  .leaflet-overlay-pane svg { filter: drop-shadow(0 8px 14px rgba(11,61,34,.22)); }
+  .map-reset a { width: auto !important; padding: 0 10px; font-size: 13px; font-family: inherit; white-space: nowrap; }
   .leaflet-container { font-family: inherit; }
   /* Clicking a division focuses its SVG path; hide the browser's square focus box (selection is shown by the orange outline). */
   .leaflet-container path.leaflet-interactive:focus, .leaflet-container .leaflet-interactive:focus { outline: none; }
@@ -195,8 +198,9 @@
   .readout { font-size: 13px; color: var(--ink-2); min-height: 20px; }
   .clear { font: inherit; font-size: 13px; cursor: pointer; border: none; background: none; color: var(--brta-ink); padding: 0; text-decoration: underline; }
 
-  footer { max-width: 1280px; margin: 0 auto; padding: 0 16px 32px; color: var(--ink-2); font-size: 13px; }
-  footer a { color: var(--brta-ink); }
+  .foot { background: #073d22; color: #c9ecd8; margin-top: 8px; }
+  footer { max-width: 1280px; margin: 0 auto; padding: 20px 16px 28px; font-size: 13px; }
+  footer a { color: #fff; }
 
   @media (max-width: 960px) {
     .layout { grid-template-columns: 1fr; }
@@ -278,6 +282,7 @@
   </aside>
 </main>
 
+<div class="foot">
 <footer>
   <p>
     তথ্যসূত্র: বাংলাদেশ সড়ক পরিবহন কর্তৃপক্ষ (বিআরটিএ)-র
@@ -289,6 +294,7 @@
     <a href="https://github.com/MehrazRumman/BD-Road-Accident" target="_blank" rel="noopener">ডেটা ও বিশ্লেষণ (GitHub)</a>
   </p>
 </footer>
+</div>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
@@ -437,6 +443,18 @@
     },
   }).addTo(map);
   map.fitBounds(layer.getBounds(), { padding: [12, 12] });
+  L.geoJSON(geo, { interactive: false, style: { fill: false, color: "#0b5d33", weight: 1.2, opacity: 0.55 } }).addTo(map);
+  const Reset = L.Control.extend({
+    options: { position: "topleft" },
+    onAdd() {
+      const div = L.DomUtil.create("div", "leaflet-bar map-reset");
+      const a = L.DomUtil.create("a", "", div);
+      a.href = "#"; a.role = "button"; a.textContent = "পুরো দেশ"; a.title = "পুরো দেশ দেখাও";
+      L.DomEvent.on(a, "click", e => { L.DomEvent.preventDefault(e); map.fitBounds(layer.getBounds(), { padding: [12, 12] }); });
+      return div;
+    },
+  });
+  new Reset().addTo(map);
   map.setMaxBounds(layer.getBounds().pad(0.6));
   map.createPane("labels").style.zIndex = 630;
   map.getPane("labels").style.pointerEvents = "none";
