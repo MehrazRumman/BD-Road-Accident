@@ -22,7 +22,8 @@
     --brta: #1a8f5a;
     --brta-ink: #0f6b40;
     --rsf: #eb6834;
-    --selected: #eb6834;
+    --selected: #0b5d33;
+    --danger: #b3001b;
     --radius: 14px;
   }
   * { box-sizing: border-box; }
@@ -146,14 +147,14 @@
     content: ""; position: absolute; top: 3px; left: 3px; width: 16px; height: 16px; border-radius: 50%;
     background: #fff; box-shadow: 0 1px 2px rgba(0,0,0,.2); transition: transform .15s;
   }
-  .toggle input:checked + .switch { background: var(--rsf); }
+  .toggle input:checked + .switch { background: var(--danger); }
   .toggle input:checked + .switch::after { transform: translateX(18px); }
   .toggle input:focus-visible + .switch { outline: 2px solid var(--brta); outline-offset: 2px; }
   .toggle .dotkey { display: inline-flex; align-items: center; gap: 8px; }
-  .toggle .dotkey i { width: 10px; height: 10px; border-radius: 50%; background: var(--rsf); }
+  .toggle .dotkey i { width: 10px; height: 10px; border-radius: 50%; background: var(--danger); }
   .legend .spot-key { display: grid; gap: 3px; margin-top: 8px; padding-top: 6px; border-top: 1px solid var(--line); }
   .legend .spot-key span { display: flex; align-items: center; gap: 6px; }
-  .legend .spot-key i { width: 10px; height: 10px; border-radius: 50%; border: 2px solid #eb6834; display: inline-block; }
+  .legend .spot-key i { width: 11px; height: 11px; border-radius: 50%; border: 2px solid #b3001b; display: inline-block; }
   .leaflet-popup-content { font-family: inherit; font-size: 13px; line-height: 1.5; margin: 12px 14px; }
   .leaflet-popup-content b { font-size: 14px; }
   .leaflet-popup-content .meta { color: var(--ink-2); }
@@ -180,8 +181,9 @@
   }
   .bars button { cursor: pointer; }
   .bars button:hover { background: #eef5f0; }
-  .bars button[aria-pressed="true"] { border-color: var(--selected); background: #fdf1eb; }
+  .bars button[aria-pressed="true"] { border-color: var(--selected); background: #e9f5ee; }
   .bars .bar { height: 10px; border-radius: 0 4px 4px 0; background: var(--brta); min-width: 2px; }
+  #rank .bar { background: #d7301f; }  /* division ranking mirrors the red danger scale on the map */
   .bars .val { font-weight: 600; font-size: 14px; min-width: 58px; text-align: right; font-variant-numeric: tabular-nums; }
   .empty { color: var(--ink-2); font-size: 14px; padding: 4px 0; }
 
@@ -299,7 +301,8 @@
     "Motorcycle": "মোটরসাইকেল", "Three-wheeler": "তিন চাকার যান", "Truck / pickup / goods": "ট্রাক/পিকআপ",
     "Bus": "বাস/মিনিবাস", "Car / microbus": "কার/মাইক্রোবাস", "Van / other": "ভ্যান/অন্যান্য",
   };
-  const RAMP = ["#cde2fb", "#86b6ef", "#3987e5", "#1c5cab", "#0d366b"];
+  // Red sequential ramp, light to dark: darker red = more accidents (danger).
+  const RAMP = ["#fde0dd", "#fcae9f", "#f6705b", "#d7301f", "#8c0d12"];
   // Label positions (lat, lng), placed inside each division and away from the busiest highway corridors.
   const LABEL_AT = {
     Dhaka: [23.55, 89.95], Chattogram: [22.3, 92.2], Rajshahi: [24.75, 88.65], Khulna: [22.55, 89.35],
@@ -409,7 +412,7 @@
     return {
       fillColor: current.hasData ? colorFor(current.agg[d][state.measure]) : "#e1e0d9",
       fillOpacity: current.hasData ? 0.88 : 0.7,
-      color: sel ? "#eb6834" : "#ffffff", weight: sel ? 3.5 : 1.5,
+      color: sel ? "#0b5d33" : "#ffffff", weight: sel ? 3.5 : 1.5,
     };
   };
   function tipHtml(d) {
@@ -427,7 +430,7 @@
       const d = f.properties.name;
       l.bindTooltip(() => tipHtml(d), { sticky: true, className: "tip", direction: "top", offset: [0, -8] });
       l.on({
-        mouseover: e => e.target.setStyle({ weight: 3, color: state.selected === d ? "#eb6834" : "#0b0b0b" }),
+        mouseover: e => e.target.setStyle({ weight: 3, color: state.selected === d ? "#0b5d33" : "#0b0b0b" }),
         mouseout: () => layer.resetStyle(l),
         click: () => select(d),
       });
@@ -452,8 +455,8 @@
   const spotLayer = L.layerGroup().addTo(map);
   const spotMarkers = spotData.spots.map(s => {
     const mk = L.circleMarker([s.lat, s.lng], {
-      pane: "spots", radius: s.exact ? 4.5 : 4, weight: 1.75, color: "#eb6834",
-      fillColor: s.exact ? "#eb6834" : "#ffffff", fillOpacity: 1,
+      pane: "spots", radius: s.exact ? 5 : 4.5, weight: s.exact ? 1.5 : 2,
+      color: s.exact ? "#ffffff" : "#b3001b", fillColor: s.exact ? "#b3001b" : "#ffffff", fillOpacity: 1,
     });
     const head = `<b>${esc(s.place)}</b><div class="meta">জেলা: ${s.district} · মহাসড়ক ${s.highway}: ${HW[s.highway]}</div>`;
     const where = s.exact ? "অবস্থান: কিলোমিটার পোস্ট বা সড়ক ধরে নির্ধারিত" : "অবস্থান: আনুমানিক (উপজেলা পর্যায়ে)";
@@ -489,7 +492,7 @@
     const el = document.getElementById("legend");
     const spotsOn = document.getElementById("spots-on").checked;
     const spotKey = spotsOn ? `<div class="spot-key">
-        <span><i style="background:#eb6834"></i>দুর্ঘটনাপ্রবণ স্থান (নির্দিষ্ট)</span>
+        <span><i style="background:#b3001b;border-color:#b3001b"></i>দুর্ঘটনাপ্রবণ স্থান (নির্দিষ্ট)</span>
         <span><i style="background:#fff"></i>দুর্ঘটনাপ্রবণ স্থান (আনুমানিক)</span></div>` : "";
     if (!current.hasData && !spotsOn) { el.style.display = "none"; return; }
     el.style.display = "";
