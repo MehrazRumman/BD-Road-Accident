@@ -341,12 +341,29 @@
   }
 
   const state = { year: "all", month: "all", measure: "deaths", selected: null };
+  // The view is kept in the URL hash (#y=2024&m=7&v=rate&d=Dhaka&hw=N1&spots=0) so it can be shared.
+  const hash = new URLSearchParams(location.hash.slice(1));
+  if (CALENDAR.some(c => c.y === +hash.get("y"))) state.year = hash.get("y");
+  if (+hash.get("m") >= 1 && +hash.get("m") <= 12) state.month = hash.get("m");
+  if (hash.get("v") in MEASURES) state.measure = hash.get("v");
+  if (DIVISIONS.includes(hash.get("d"))) state.selected = hash.get("d");
+  function saveHash() {
+    const p = new URLSearchParams();
+    if (state.year !== "all") p.set("y", state.year);
+    if (state.month !== "all") p.set("m", state.month);
+    if (state.measure !== "deaths") p.set("v", state.measure);
+    if (state.selected) p.set("d", state.selected);
+    if (highwaySel.value !== "all") p.set("hw", highwaySel.value);
+    if (!document.getElementById("spots-on").checked) p.set("spots", "0");
+    history.replaceState(null, "", p.toString() ? `#${p}` : location.pathname + location.search);
+  }
   const inPeriod = (y, m) => (state.year === "all" || y === +state.year) && (state.month === "all" || m === +state.month);
 
   // ---------- Filters ----------
   const yearSel = document.getElementById("year"), monthSel = document.getElementById("month");
   yearSel.innerHTML = `<option value="all">সব বছর</option>` +
     [...new Set(CALENDAR.map(c => c.y))].map(y => `<option value="${y}">${bnYear(y)}${y < 2023 ? " (শুধু জাতীয়)" : ""}</option>`).join("");
+  yearSel.value = state.year;
   function fillMonths() {
     const avail = new Set(CALENDAR.filter(c => state.year === "all" || c.y === +state.year).map(c => c.m));
     monthSel.innerHTML = `<option value="all">সব মাস</option>` +
@@ -356,6 +373,7 @@
   }
   yearSel.addEventListener("change", () => { state.year = yearSel.value; fillMonths(); render(); });
   monthSel.addEventListener("change", () => { state.month = monthSel.value; render(); });
+  document.querySelectorAll("#measure button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.m === state.measure)));
   document.querySelectorAll("#measure button").forEach(b => b.addEventListener("click", () => {
     state.measure = b.dataset.m;
     document.querySelectorAll("#measure button").forEach(x => x.setAttribute("aria-pressed", String(x === b)));
@@ -469,6 +487,8 @@
   const hwOrder = Object.keys(HW).sort((a, b) => parseInt(a.slice(1)) - parseInt(b.slice(1)));
   highwaySel.innerHTML = `<option value="all">সব মহাসড়ক</option>` +
     hwOrder.map(h => `<option value="${h}">${h}: ${HW[h]}</option>`).join("");
+  if (HW[hash.get("hw")]) highwaySel.value = hash.get("hw");
+  if (hash.get("spots") === "0") document.getElementById("spots-on").checked = false;
   const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
   const spotLayer = L.layerGroup().addTo(map);
   const spotMarkers = spotData.spots.map(s => {
@@ -496,6 +516,7 @@
       : "";
     renderLegend();
     renderCaption();
+    saveHash();
   }
   document.getElementById("spots-on").addEventListener("change", renderSpots);
   highwaySel.addEventListener("change", renderSpots);
@@ -634,7 +655,7 @@
       className: "label-icon", iconSize: [0, 0],
       html: `<div class="div-label">${nameBn[d]}${hasData ? `<span>${fmt(agg[d][state.measure], state.measure)}</span>` : ""}</div>`,
     })));
-    renderLegend(); renderTotals(); renderRank(); renderVehicles(); renderTrend(); renderCaption();
+    renderLegend(); renderTotals(); renderRank(); renderVehicles(); renderTrend(); renderCaption(); saveHash();
   }
   function renderCaption() {
     const spotsOn = document.getElementById("spots-on").checked;
