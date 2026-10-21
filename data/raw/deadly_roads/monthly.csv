@@ -1,0 +1,59 @@
+source,year,month,accidents,deaths,injuries,citation_url,note
+RSF,2020,1,340,445,,https://www.dhakatribune.com/bangladesh/237902/road-crashes-kill-484-in-january,back-reference in Jan 2021 article
+RSF,2020,8,302,379,,https://en.prothomalo.com/bangladesh/road-accidents-claim-379-lives-in-august,
+RSF,2021,1,427,484,673,https://www.dhakatribune.com/bangladesh/237902/road-crashes-kill-484-in-january,
+RSF,2021,5,441,562,,https://mail.thefinancialexpress.com.bd/national/road-crashes-claim-398-lives-in-june-1625657975?amp=true,back-reference
+RSF,2021,6,327,398,423,https://mail.thefinancialexpress.com.bd/national/road-crashes-claim-398-lives-in-june-1625657975?amp=true,
+RSF,2022,4,427,543,612,https://en.prothomalo.com/bangladesh/accident/543-killed-in-427-road-accidents-in-april-rsf,
+RSF,2022,5,528,641,1364,https://today.thefinancialexpress.com.bd/print/641-killed-in-528-crashes-in-may-1654538899,
+RSF,2022,6,467,524,821,https://unb.com.bd/category/bangladesh/road-crashes-claim-524-lives-in-june/96260,
+RSF,2022,7,632,739,2042,https://unb.com.bd/category/Bangladesh/739-lives-lost-on-roads-in-july-in-bangladesh-rsf/98335,
+RSF,2022,8,458,519,961,https://www.tbsnews.net/node/489326,
+RSF,2022,9,407,476,794,https://unb.com.bd/category/Bangladesh/476-people-killed-in-407-road-accidents-in-september-road-safety-foundation/101890,
+RSF,2022,11,463,554,747,https://www.dhakatribune.com/bangladesh/299745/report-554-killed-in-road-accidents-in-november,
+RSF,2023,2,439,487,712,https://unb.com.bd/category/Bangladesh/487-deaths-in-439-road-accidents-in-feb-road-safety-foundation/111468,
+RSF,2023,3,486,564,1097,https://www.dhakatribune.com/bangladesh/308345/report-564-people-lost-lives-in-486-road,
+RSF,2023,6,559,516,812,https://unb.com.bd/category/Bangladesh/516-deaths-in-559-road-accidents-in-june-road-safety-foundation/118647,
+RSF,2023,7,511,573,1126,https://www.tbsnews.net/node/678302,"Dhaka Tribune gives 1,256 injured"
+RSF,2023,8,403,378,,https://www.dhakatribune.com/bangladesh/327393/report-394-lives-lost-on-roads-across-bangladesh,back-reference
+RSF,2023,9,398,394,,https://www.dhakatribune.com/bangladesh/327393/report-394-lives-lost-on-roads-across-bangladesh,
+RSF,2023,10,458,421,,https://unb.com.bd/category/Bangladesh/467-lives-lost-on-roads-across-country-in-nov-road-safety-foundation/127181,back-reference
+RSF,2023,11,541,467,672,https://unb.com.bd/category/Bangladesh/467-lives-lost-on-roads-across-country-in-nov-road-safety-foundation/127181,
+RSF,2023,12,517,512,793,https://www.dhakatribune.com/bangladesh/335789/report-512-killed-in-december-road-accidents,
+RSF,2024,2,583,544,867,https://observerbd.com/news.php?id=464297,
+RSF,2024,3,,573,,https://today.thefinancialexpress.com.bd/print/679-killed-934-injured-rsf-1715531825,back-reference
+RSF,2024,4,,679,934,https://today.thefinancialexpress.com.bd/print/679-killed-934-injured-rsf-1715531825,
+RSF,2024,6,689,696,1867,https://tds-images.thedailystar.net/news/bangladesh/accidents-fires/news/696-killed-road-accidents-june-3930696,year inferred from TBS tag '37% increase in fatalities in June compared to May' (2024)
+RSF,2024,9,392,426,813,https://www.dhakatribune.com/bangladesh/361057/426-lives-lost-on-the-roads-in-september,
+RSF,2024,10,443,469,837,https://en.ittefaq.com.bd/9582/469-dead-837-injured-in-oct-road-crashes-in,
+RSF,2025,1,621,608,1100,https://thefinancialexpress.com.bd/national/bd-sees-621-road-accidents-in-jan-608-people-killed,
+RSF,2025,2,596,578,1327,https://www.dhakatribune.com/bangladesh/375738/road-accident-596-crashes-claim-578-lives-in-last,
+RSF,2025,3,587,604,1231,https://www.dhakatribune.com/bangladesh/378488/road-crashes-claim-604-lives-in-march,
+RSF,2025,4,593,588,1124,https://www.dhakatribune.com/bangladesh/380943/588-killed-1-124-injured-in-road-accidents-in,
+RSF,unknown,5,491,408,631,https://www.tbsnews.net/node/646738,year not stated in article; node id 646738 suggests ~2023 publication; treat with caution
+RSF,2025,7,443,418,856,https://www.dhakatribune.com/bangladesh/389368/rsf-report-47-students-among-418-killed-in-road,
+RSF,2025,8,451,428,791,https://en.prothomalo.com/bangladesh/accident/92uxvdz8dp,
+RSF,2025,9,446,417,682,https://www.dhakatribune.com/bangladesh/393162/rsf-417-lives-lost-on-roads-in-september-in,
+RSF,2025,10,486,441,1128,https://unb.com.bd/category/Bangladesh/bangladesh-sees-rise-in-road-accidents-deaths-in-october-rsf/173371,
+RSF,2025,11,534,483,1317,https://www.dhakatribune.com/bangladesh/399002/rsf-bangladesh-sees-rise-in-road-accidents,
+RSF,2025,12,547,503,1186,https://en.prothomalo.com/bangladesh/5adgycvhw6,
+RSF,2026,1,559,487,1194,https://unb.com.bd/category/bangladesh/57-children-among-487-killed-in-january-road-crashes-in-bangladesh-rsf/179885,"2026, outside requested scope"
+RSF,2026,3,576,532,2221,https://en.prothomalo.com/bangladesh/3f7xzpme5e,"2026, outside requested scope"
+RSF,2026,4,463,404,709,https://bdnews24.com/bangladesh/b2131eb8a841,"2026, outside requested scope"
+RSF,2026,6,472,438,561,https://bdnews24.com/bangladesh/9a8381f35de8,"2026, outside requested scope; bdnews24 body says 428"
+RSF,2026,7,458,416,629,https://unb.com.bd/category/Bangladesh/bangladeshs-roads-remain-deadly-416-killed-in-july-alone/192431,"2026, outside requested scope"
+RSF,2026,8,513,481,664,https://bdnews24.com/bangladesh/3fa3811aa635,"2026, outside requested scope"
+RSF,2026,9,442,423,674,https://unb.com.bd/category/Bangladesh/14-deaths-a-day-as-423-killed-in-road-crashes-in-september-rsf/196955,"2026, outside requested scope"
+BJKS,2023,1,593,585,899,https://www.dhakatribune.com/bangladesh/304218/report-january-saw-585-deaths-from-593-road,
+BJKS,2023,3,487,538,1138,https://www.dhakatribune.com/bangladesh/308345/report-564-people-lost-lives-in-486-road,
+BJKS,2024,1,521,486,1054,https://www.dhakatribune.com/bangladesh/340314/report-road-accidents-claimed-486-lives-in,
+BJKS,2024,4,683,708,2426,https://d11.thedailystar.net/news/bangladesh/accidents-fires/news/708-killed-683-road-accidents-april-report-3616021,
+BJKS,2024,9,493,498,978,https://unb.com.bd/category/Bangladesh/road-accidents-claim-498-lives-in-sept-jatri-kalyan-samity/145027,
+BJKS,2025,5,597,614,1196,https://www.dhakatribune.com/bangladesh/383639/jatri-kalyan-samity-may-sees-614-road-fatalities,
+BJKS,2026,6,532,463,1323,https://unb.com.bd/category/Bangladesh/532-road-accidents-kill-463-in-june-jatri-kalyan-samity/190598,"2026, outside requested scope"
+SCRF,2019,1,383,411,725,https://www.dhakatribune.com/bangladesh/181330/report-2-329-killed-in-2-159-road-accidents-from,"Shipping and Communication Reporters Forum, not RSF/BJKS"
+SCRF,2019,2,401,415,884,https://www.dhakatribune.com/bangladesh/181330/report-2-329-killed-in-2-159-road-accidents-from,"Shipping and Communication Reporters Forum, not RSF/BJKS"
+SCRF,2019,3,384,386,820,https://www.dhakatribune.com/bangladesh/181330/report-2-329-killed-in-2-159-road-accidents-from,"Shipping and Communication Reporters Forum, not RSF/BJKS"
+SCRF,2019,4,327,340,610,https://www.dhakatribune.com/bangladesh/181330/report-2-329-killed-in-2-159-road-accidents-from,"Shipping and Communication Reporters Forum, not RSF/BJKS"
+SCRF,2019,5,297,338,504,https://www.dhakatribune.com/bangladesh/181330/report-2-329-killed-in-2-159-road-accidents-from,"Shipping and Communication Reporters Forum, not RSF/BJKS"
+SCRF,2019,6,367,439,818,https://www.dhakatribune.com/bangladesh/181330/report-2-329-killed-in-2-159-road-accidents-from,"Shipping and Communication Reporters Forum, not RSF/BJKS"

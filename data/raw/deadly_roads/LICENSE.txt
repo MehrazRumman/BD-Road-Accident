@@ -1,0 +1,10 @@
+Page, code and cleaned data (data/*.json, data/raw/*.csv): Creative Commons Attribution 4.0 International (CC BY 4.0)
+https://creativecommons.org/licenses/by/4.0/
+
+Third-party data keeps its own licence:
+- OpenStreetMap-derived highway geometry (data/raw/roads/bd-major-routes.geojson, data/highways.geojson, corridor polylines): Open Database License (ODbL), (c) OpenStreetMap contributors
+- geoBoundaries ADM1/ADM2 (assets/basemap/divisions.geojson, districts.geojson): CC BY 4.0, www.geoboundaries.org
+- Natural Earth (assets/basemap/countries, rivers, lakes): public domain
+- Open Sans (assets/fonts): SIL Open Font License 1.1
+- MapLibre GL JS (lib/): BSD-3-Clause; D3 (lib/): ISC
+- Figures transcribed from Bangladesh Police/BRTA, ARI-BUET, Jatri Kalyan Samity, Road Safety Foundation, WHO and press reports remain under their publishers' terms; the URL for each is in the CSV.
