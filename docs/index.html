@@ -225,6 +225,7 @@
   footer { max-width: 1280px; margin: 0 auto; padding: 20px 16px 28px; font-size: 13px; }
   footer a { color: #fff; }
   footer .views { margin: 12px 0 0; padding-top: 12px; border-top: 1px solid rgba(255,255,255,.15); color: #fff; font-weight: 500; }
+  footer .views small { color: #a9dcc0; font-weight: 400; }
 
   @media (max-width: 960px) {
     .layout { grid-template-columns: 1fr; }
@@ -792,13 +793,14 @@
 <!-- Page view counter (GoatCounter: no cookies, no personal data) -->
 <script data-goatcounter="https://mehrazrumman.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 <script>
-  // Visitors and total views of this page from GoatCounter's public counter; stays hidden if it can't be reached.
+  // Unique visitors of this page from GoatCounter's public counter (it counts visitors, not page loads, and its
+  // public figure is cached for a few hours). Stays hidden if it can't be reached.
   fetch(`https://mehrazrumman.goatcounter.com/counter/${encodeURIComponent(location.pathname)}.json`)
     .then(r => r.ok ? r.json() : Promise.reject(r.status))
     .then(d => {
       const num = v => Number(String(v).replace(/\D/g, "")).toLocaleString("bn-BD");
       const el = document.getElementById("views");
-      el.textContent = `👁 এই পাতাটি দেখেছেন ${num(d.count_unique)} জন · মোট দেখা হয়েছে ${num(d.count)} বার`;
+      el.innerHTML = `এই পাতাটি দেখেছেন ${num(d.count)} জন <small>(সংখ্যাটি কয়েক ঘণ্টা পরপর হালনাগাদ হয়)</small>`;
       el.hidden = false;
     })
     .catch(() => {});
