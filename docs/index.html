@@ -1,0 +1,498 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>বাংলাদেশ সড়ক দুর্ঘটনা মানচিত্র</title>
+<meta name="description" content="বাংলাদেশের বিভাগভিত্তিক সড়ক দুর্ঘটনা, নিহত ও আহতের সংখ্যা (বিআরটিএ ২০২৩–২০২৬) এবং রোড সেফটি ফাউন্ডেশনের জাতীয় হিসাব (২০২১–২০২৬)।">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    color-scheme: light;
+    --page: #f4f3ef;
+    --surface: #fcfcfb;
+    --ink: #0b0b0b;
+    --ink-2: #52514e;
+    --muted: #898781;
+    --line: #e1e0d9;
+    --brta: #2a78d6;
+    --brta-ink: #1c5cab;
+    --rsf: #eb6834;
+    --selected: #eb6834;
+    --radius: 14px;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    background: var(--page);
+    color: var(--ink);
+    font-family: "Noto Sans Bengali", system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+  }
+  header { max-width: 1280px; margin: 0 auto; padding: 24px 16px 8px; }
+  header h1 { margin: 0; font-size: clamp(22px, 3vw, 30px); font-weight: 700; letter-spacing: -0.01em; }
+  header p { margin: 4px 0 0; color: var(--ink-2); }
+
+  .layout {
+    max-width: 1280px; margin: 0 auto; padding: 12px 16px 24px;
+    display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(330px, 1fr); gap: 16px; align-items: start;
+  }
+  .stack { display: grid; gap: 16px; min-width: 0; }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px; min-width: 0; }
+  .card h2 { margin: 0 0 10px; font-size: 16px; font-weight: 600; }
+  .sub { font-size: 13px; color: var(--muted); margin: -6px 0 10px; }
+
+  /* Map */
+  .map-card { padding: 0; overflow: hidden; position: relative; }
+  #map { height: min(74vh, 680px); min-height: 460px; background: #f7f9fb; }
+  .leaflet-container { font-family: inherit; }
+  .div-label {
+    background: rgba(255,255,255,.88); border-radius: 8px; padding: 2px 7px;
+    box-shadow: 0 1px 3px rgba(0,0,0,.15);
+    text-align: center; pointer-events: none; white-space: nowrap;
+    font-weight: 600; font-size: 12.5px; line-height: 1.25; color: var(--ink);
+    transform: translate(-50%, -50%); display: inline-block;
+  }
+  .div-label span { display: block; font-weight: 700; font-size: 13px; }
+  .leaflet-div-icon.label-icon { background: none; border: none; }
+  .leaflet-tooltip.tip {
+    font-family: inherit; font-size: 13px; border-radius: 10px; padding: 8px 10px;
+    border: 1px solid var(--line); box-shadow: 0 6px 18px rgba(0,0,0,.12);
+  }
+  .tip b { font-size: 14px; }
+  .tip table { border-collapse: collapse; margin-top: 4px; }
+  .tip td { padding: 1px 0; }
+  .tip td + td { padding-left: 14px; text-align: right; font-weight: 600; }
+  .legend {
+    position: absolute; left: 12px; bottom: 12px; z-index: 500;
+    background: rgba(252,252,251,.95); border: 1px solid var(--line); border-radius: 10px;
+    padding: 8px 10px; font-size: 12px; color: var(--ink-2);
+  }
+  .legend .title { font-weight: 600; color: var(--ink); margin-bottom: 4px; }
+  .legend .scale { display: flex; gap: 2px; }
+  .legend .scale i { width: 36px; height: 10px; border-radius: 2px; }
+  .legend .ticks { display: flex; justify-content: space-between; margin-top: 2px; }
+  .nodata {
+    position: absolute; inset: 0; z-index: 600; display: none; place-items: center; padding: 24px;
+    background: rgba(247,249,251,.6); pointer-events: none;
+  }
+  .nodata div {
+    max-width: 380px; text-align: center; background: var(--surface); border: 1px solid var(--line);
+    border-radius: var(--radius); padding: 14px 16px; color: var(--ink-2); box-shadow: 0 6px 18px rgba(0,0,0,.08);
+  }
+  .nodata b { color: var(--ink); display: block; margin-bottom: 4px; }
+
+  /* Filters */
+  .filters { display: grid; gap: 12px; }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  label.field { display: grid; gap: 4px; font-size: 13px; color: var(--ink-2); font-weight: 500; }
+  select {
+    font: inherit; font-size: 15px; color: var(--ink);
+    padding: 8px 30px 8px 10px; border: 1px solid var(--line); border-radius: 10px; background: #fff; appearance: none;
+    background-image: linear-gradient(45deg, transparent 50%, var(--muted) 50%), linear-gradient(135deg, var(--muted) 50%, transparent 50%);
+    background-position: calc(100% - 16px) 50%, calc(100% - 11px) 50%; background-size: 5px 5px; background-repeat: no-repeat;
+  }
+  select:focus-visible, button:focus-visible { outline: 2px solid var(--brta); outline-offset: 2px; }
+  .seg-label { font-size: 13px; color: var(--ink-2); font-weight: 500; margin-bottom: -6px; }
+  .seg { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; }
+  .seg button {
+    font: inherit; font-size: 14px; cursor: pointer; padding: 8px 6px; border-radius: 10px;
+    border: 1px solid var(--line); background: #fff; color: var(--ink-2);
+  }
+  .seg button[aria-pressed="true"] { background: var(--brta); border-color: var(--brta); color: #fff; font-weight: 600; }
+
+  /* Totals */
+  .totals { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+  .totals th { font-size: 13px; color: var(--ink-2); font-weight: 500; text-align: right; padding: 0 0 6px; }
+  .totals th:first-child { text-align: left; }
+  .totals td { padding: 8px 0; border-top: 1px solid var(--line); text-align: right; font-size: clamp(17px, 1.8vw, 21px); font-weight: 700; }
+  .totals td:first-child { text-align: left; font-size: 13px; font-weight: 500; color: var(--ink-2); }
+  .totals .src { display: flex; align-items: center; gap: 6px; }
+  .totals .dot { width: 10px; height: 10px; border-radius: 50%; flex: none; }
+  .totals .note { display: block; font-size: 12px; color: var(--muted); font-weight: 400; }
+  .totals .na { color: var(--muted); font-weight: 500; font-size: 14px; }
+
+  /* Bars */
+  .bars { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+  .bars button, .bars .item {
+    width: 100%; font: inherit; text-align: left; color: var(--ink);
+    display: grid; grid-template-columns: 96px 1fr auto; align-items: center; gap: 10px;
+    padding: 6px 8px; border-radius: 8px; border: 1px solid transparent; background: none;
+  }
+  .bars button { cursor: pointer; }
+  .bars button:hover { background: #f1f4f8; }
+  .bars button[aria-pressed="true"] { border-color: var(--selected); background: #fdf1eb; }
+  .bars .bar { height: 10px; border-radius: 0 4px 4px 0; background: var(--brta); min-width: 2px; }
+  .bars .val { font-weight: 600; font-size: 14px; min-width: 58px; text-align: right; font-variant-numeric: tabular-nums; }
+  .empty { color: var(--ink-2); font-size: 14px; padding: 4px 0; }
+
+  /* Trend */
+  #trend { width: 100%; height: 190px; display: block; }
+  .keys { display: flex; flex-wrap: wrap; gap: 14px; font-size: 13px; color: var(--ink-2); margin-bottom: 4px; }
+  .keys span { display: inline-flex; align-items: center; gap: 6px; }
+  .keys i { width: 16px; height: 3px; border-radius: 2px; display: inline-block; }
+  .readout { font-size: 13px; color: var(--ink-2); min-height: 20px; }
+  .clear { font: inherit; font-size: 13px; cursor: pointer; border: none; background: none; color: var(--brta-ink); padding: 0; text-decoration: underline; }
+
+  footer { max-width: 1280px; margin: 0 auto; padding: 0 16px 32px; color: var(--ink-2); font-size: 13px; }
+  footer a { color: var(--brta-ink); }
+
+  @media (max-width: 960px) {
+    .layout { grid-template-columns: 1fr; }
+    #map { height: 62vh; min-height: 380px; }
+  }
+  @media (max-width: 420px) {
+    .bars button, .bars .item { grid-template-columns: 78px 1fr auto; gap: 6px; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>বাংলাদেশ সড়ক দুর্ঘটনা মানচিত্র</h1>
+  <p>বিভাগভিত্তিক সড়ক দুর্ঘটনা, নিহত ও আহত · বিআরটিএ (২০২৩–২০২৬) ও রোড সেফটি ফাউন্ডেশন (২০২১–২০২৬)</p>
+</header>
+
+<main class="layout">
+  <div class="stack">
+    <section class="card map-card" aria-label="মানচিত্র">
+      <div id="map"></div>
+      <div class="legend" id="legend" aria-hidden="true"></div>
+      <div class="nodata" id="nodata"><div><b>এই সময়ের বিভাগভিত্তিক তথ্য নেই</b>বিআরটিএ-র মাসিক বিভাগভিত্তিক প্রতিবেদন ২০২৩ সাল থেকে। এই সময়ের জাতীয় হিসাব (রোড সেফটি ফাউন্ডেশন) ডান পাশে দেখুন।</div></div>
+    </section>
+
+    <section class="card">
+      <h2 id="trend-title">মাসভিত্তিক নিহত: সারা দেশ</h2>
+      <div class="keys" id="keys"></div>
+      <svg id="trend" role="img" aria-label="মাসভিত্তিক প্রবণতা"></svg>
+      <div class="readout" id="readout">চার্টের উপর মাউস রাখুন। কমলা ছায়া = বাছাই করা সময়।</div>
+    </section>
+  </div>
+
+  <aside class="stack">
+    <div class="card filters">
+      <div class="row">
+        <label class="field">বছর <select id="year"></select></label>
+        <label class="field">মাস <select id="month"></select></label>
+      </div>
+      <div class="seg-label">মানচিত্রে যা দেখাবে</div>
+      <div class="seg" id="measure" role="group" aria-label="পরিমাপ">
+        <button type="button" data-m="deaths" aria-pressed="true">নিহত</button>
+        <button type="button" data-m="accidents" aria-pressed="false">দুর্ঘটনা</button>
+        <button type="button" data-m="injuries" aria-pressed="false">আহত</button>
+        <button type="button" data-m="rate" aria-pressed="false">প্রতি ১০ লাখে নিহত</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>সারা দেশে মোট</h2>
+      <div class="sub" id="period"></div>
+      <table class="totals" id="totals"></table>
+    </div>
+
+    <div class="card">
+      <h2 id="rank-title">বিভাগভিত্তিক নিহত</h2>
+      <div class="sub">সূত্র: বিআরটিএ · বিভাগে ক্লিক করুন</div>
+      <ol class="bars" id="rank"></ol>
+    </div>
+
+    <div class="card">
+      <h2>যানবাহনভিত্তিক নিহত</h2>
+      <div class="sub">সূত্র: বিআরটিএ, সারা দেশ · পথচারীরা যে যানবাহনের ধাক্কায় নিহত, সেই যানবাহনের হিসাবে</div>
+      <ul class="bars" id="vehicles"></ul>
+    </div>
+  </aside>
+</main>
+
+<footer>
+  <p>
+    তথ্যসূত্র: বাংলাদেশ সড়ক পরিবহন কর্তৃপক্ষ (বিআরটিএ)-র
+    <a href="https://brta.gov.bd/pages/static-pages/6922de76933eb65569e1ac54" target="_blank" rel="noopener">মাসিক সড়ক দুর্ঘটনা প্রতিবেদন</a>
+    এবং রোড সেফটি ফাউন্ডেশনের মাসিক ও বার্ষিক প্রতিবেদন (সংবাদমাধ্যমে প্রকাশিত)।
+    দুই সংস্থার গণনা পদ্ধতি আলাদা, তাই সংখ্যা যোগ না করে পাশাপাশি দেখানো হয়েছে।
+    দুর্ঘটনার সঠিক স্থান কোনো সংস্থা প্রকাশ করে না, তাই মানচিত্রে বিভাগভিত্তিক মোট সংখ্যা দেখানো হয়েছে।
+    জনসংখ্যা: জনশুমারি ২০২২। বিভাগের সীমানা: geoBoundaries (CC BY 4.0)।
+    <a href="https://github.com/MehrazRumman/BD-Road-Accident" target="_blank" rel="noopener">ডেটা ও বিশ্লেষণ (GitHub)</a>
+  </p>
+</footer>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+(async function () {
+  const BN_MONTHS = ["জানুয়ারি", "ফেব্রুয়ারি", "মার্চ", "এপ্রিল", "মে", "জুন", "জুলাই", "আগস্ট", "সেপ্টেম্বর", "অক্টোবর", "নভেম্বর", "ডিসেম্বর"];
+  const MEASURES = {
+    deaths: "নিহত", accidents: "দুর্ঘটনা", injuries: "আহত", rate: "প্রতি ১০ লাখ মানুষে নিহত",
+  };
+  const VEHICLE_BN = {
+    "Motorcycle": "মোটরসাইকেল", "Three-wheeler": "তিন চাকার যান", "Truck / pickup / goods": "ট্রাক/পিকআপ",
+    "Bus": "বাস/মিনিবাস", "Car / microbus": "কার/মাইক্রোবাস", "Van / other": "ভ্যান/অন্যান্য",
+  };
+  const RAMP = ["#cde2fb", "#86b6ef", "#3987e5", "#1c5cab", "#0d366b"];
+  const LABEL_AT = {
+    Dhaka: [23.85, 90.05], Chattogram: [22.75, 91.85], Rajshahi: [24.5, 88.95], Khulna: [22.9, 89.3],
+    Barishal: [22.45, 90.3], Sylhet: [24.6, 91.75], Rangpur: [25.75, 89.15], Mymensingh: [24.85, 90.45],
+  };
+  const FIRST = { y: 2021, m: 1 }, LAST = { y: 2026, m: 9 };
+
+  const bn = (n, d = 0) => Number(n).toLocaleString("bn-BD", { maximumFractionDigits: d, minimumFractionDigits: d });
+  const bnYear = y => bn(y).replace(/,/g, "");
+
+  const [geo, data] = await Promise.all([
+    fetch("data/divisions.geojson").then(r => r.json()),
+    fetch("data/accidents.json").then(r => r.json()),
+  ]);
+  const toObjs = (fields, rows) => rows.map(r => Object.fromEntries(fields.map((f, i) => [f, r[i]])));
+  const brta = toObjs(data.brta.fields, data.brta.rows);
+  const brtaVeh = toObjs(data.brta.vehicle_fields, data.brta.vehicle);
+  const rsf = toObjs(data.rsf.monthly_fields, data.rsf.monthly);
+  const rsfAnnual = Object.fromEntries(toObjs(data.rsf.annual_fields, data.rsf.annual).map(r => [r.year, r]));
+  const pop = data.population;
+  const nameBn = Object.fromEntries(geo.features.map(f => [f.properties.name, f.properties.name_bn]));
+  const DIVISIONS = Object.keys(nameBn);
+
+  // Every month in the study window.
+  const CALENDAR = [];
+  for (let y = FIRST.y; y <= LAST.y; y++) for (let m = 1; m <= 12; m++) {
+    if (y === LAST.y && m > LAST.m) break;
+    CALENDAR.push({ y, m });
+  }
+
+  const state = { year: "all", month: "all", measure: "deaths", selected: null };
+  const inPeriod = (y, m) => (state.year === "all" || y === +state.year) && (state.month === "all" || m === +state.month);
+
+  // ---------- Filters ----------
+  const yearSel = document.getElementById("year"), monthSel = document.getElementById("month");
+  yearSel.innerHTML = `<option value="all">সব বছর</option>` +
+    [...new Set(CALENDAR.map(c => c.y))].map(y => `<option value="${y}">${bnYear(y)}${y < 2023 ? " (শুধু জাতীয়)" : ""}</option>`).join("");
+  function fillMonths() {
+    const avail = new Set(CALENDAR.filter(c => state.year === "all" || c.y === +state.year).map(c => c.m));
+    monthSel.innerHTML = `<option value="all">সব মাস</option>` +
+      BN_MONTHS.map((n, i) => avail.has(i + 1) ? `<option value="${i + 1}">${n}</option>` : "").join("");
+    if (state.month !== "all" && !avail.has(+state.month)) state.month = "all";
+    monthSel.value = state.month;
+  }
+  yearSel.addEventListener("change", () => { state.year = yearSel.value; fillMonths(); render(); });
+  monthSel.addEventListener("change", () => { state.month = monthSel.value; render(); });
+  document.querySelectorAll("#measure button").forEach(b => b.addEventListener("click", () => {
+    state.measure = b.dataset.m;
+    document.querySelectorAll("#measure button").forEach(x => x.setAttribute("aria-pressed", String(x === b)));
+    render();
+  }));
+  fillMonths();
+
+  // ---------- Aggregation ----------
+  function aggregateDivisions() {
+    const agg = Object.fromEntries(DIVISIONS.map(d => [d, { accidents: 0, deaths: 0, injuries: 0 }]));
+    const months = new Set();
+    brta.filter(r => inPeriod(r.year, r.month)).forEach(r => {
+      const a = agg[r.division];
+      a.accidents += r.accidents; a.deaths += r.deaths; a.injuries += r.injuries;
+      months.add(`${r.year}-${r.month}`);
+    });
+    DIVISIONS.forEach(d => { agg[d].rate = 1e6 * agg[d].deaths / pop[d]; });
+    return { agg, nMonths: months.size };
+  }
+  function rsfTotals() {
+    if (state.year !== "all" && state.month === "all" && rsfAnnual[+state.year]) {
+      return { ...rsfAnnual[+state.year], note: "বার্ষিক প্রতিবেদন" };
+    }
+    const rs = rsf.filter(r => inPeriod(r.year, r.month));
+    const expected = CALENDAR.filter(c => inPeriod(c.y, c.m)).length;
+    if (!rs.length) return null;
+    const sum = k => rs.some(r => r[k] == null) ? null : rs.reduce((s, r) => s + r[k], 0);
+    const note = rs.length === expected ? (expected > 1 ? `${bn(rs.length)} মাসিক প্রতিবেদনের যোগফল` : "মাসিক প্রতিবেদন")
+                                         : `${bn(expected)} মাসের মধ্যে ${bn(rs.length)} মাসের তথ্য`;
+    return { accidents: sum("accidents"), deaths: sum("deaths"), injuries: sum("injuries"), note };
+  }
+  const fmt = (v, m) => m === "rate" ? bn(v, 1) : bn(v);
+
+  function periodText() {
+    const expected = CALENDAR.filter(c => inPeriod(c.y, c.m)).length;
+    if (state.year === "all" && state.month === "all") return `জানুয়ারি ২০২১ – সেপ্টেম্বর ২০২৬ (${bn(expected)} মাস)`;
+    if (state.month === "all") return `${bnYear(state.year)} সাল (${bn(expected)} মাস)`;
+    return state.year === "all" ? `প্রতি বছরের ${BN_MONTHS[state.month - 1]} মাস (${bn(expected)} মাস)` : `${BN_MONTHS[state.month - 1]} ${bnYear(state.year)}`;
+  }
+
+  // ---------- Map ----------
+  const map = L.map("map", { zoomSnap: 0.25, scrollWheelZoom: false, maxZoom: 10 });
+  map.attributionControl.setPrefix(false).addAttribution('সীমানা: <a href="https://www.geoboundaries.org">geoBoundaries</a>');
+
+  let current = { ...aggregateDivisions(), breaks: [], hasData: true };
+  const colorFor = v => {
+    let i = 0;
+    while (i < current.breaks.length && v > current.breaks[i]) i++;
+    return RAMP[i];
+  };
+  const styleFor = f => {
+    const d = f.properties.name, sel = state.selected === d;
+    return {
+      fillColor: current.hasData ? colorFor(current.agg[d][state.measure]) : "#e1e0d9",
+      fillOpacity: current.hasData ? 0.88 : 0.7,
+      color: sel ? "#eb6834" : "#ffffff", weight: sel ? 3.5 : 1.5,
+    };
+  };
+  function tipHtml(d) {
+    if (!current.hasData) return `<b>${nameBn[d]} বিভাগ</b><br>এই সময়ের বিভাগভিত্তিক তথ্য নেই`;
+    const a = current.agg[d];
+    return `<b>${nameBn[d]} বিভাগ</b><table>
+      <tr><td>দুর্ঘটনা</td><td>${bn(a.accidents)}</td></tr>
+      <tr><td>নিহত</td><td>${bn(a.deaths)}</td></tr>
+      <tr><td>আহত</td><td>${bn(a.injuries)}</td></tr>
+      <tr><td>প্রতি ১০ লাখে নিহত</td><td>${bn(a.rate, 1)}</td></tr></table>`;
+  }
+  const layer = L.geoJSON(geo, {
+    style: styleFor,
+    onEachFeature: (f, l) => {
+      const d = f.properties.name;
+      l.bindTooltip(() => tipHtml(d), { sticky: true, className: "tip", direction: "top", offset: [0, -8] });
+      l.on({
+        mouseover: e => e.target.setStyle({ weight: 3, color: state.selected === d ? "#eb6834" : "#0b0b0b" }),
+        mouseout: () => layer.resetStyle(l),
+        click: () => select(d),
+      });
+    },
+  }).addTo(map);
+  map.fitBounds(layer.getBounds(), { padding: [12, 12] });
+  map.setMaxBounds(layer.getBounds().pad(0.6));
+  const labels = Object.fromEntries(DIVISIONS.map(d => [d, L.marker(LABEL_AT[d], {
+    interactive: false, icon: L.divIcon({ className: "label-icon", html: "", iconSize: [0, 0] }),
+  }).addTo(map)]));
+
+  // ---------- Panels ----------
+  function rangeBreaks(values) {
+    const lo = Math.min(...values), hi = Math.max(...values);
+    const step = (hi - lo) / RAMP.length || 1;
+    return Array.from({ length: RAMP.length - 1 }, (_, i) => lo + step * (i + 1));
+  }
+  function renderLegend() {
+    const el = document.getElementById("legend");
+    if (!current.hasData) { el.style.display = "none"; return; }
+    el.style.display = "";
+    const m = state.measure, vals = DIVISIONS.map(d => current.agg[d][m]);
+    el.innerHTML = `<div class="title">${MEASURES[m]}</div>
+      <div class="scale">${RAMP.map(c => `<i style="background:${c}"></i>`).join("")}</div>
+      <div class="ticks"><span>${fmt(Math.min(...vals), m)}</span><span>${fmt(Math.max(...vals), m)}</span></div>`;
+  }
+  function renderTotals() {
+    const r = rsfTotals();
+    const b = current.hasData ? DIVISIONS.reduce((t, d) => ({
+      accidents: t.accidents + current.agg[d].accidents, deaths: t.deaths + current.agg[d].deaths,
+      injuries: t.injuries + current.agg[d].injuries,
+    }), { accidents: 0, deaths: 0, injuries: 0 }) : null;
+    const cell = (o, k) => o && o[k] != null ? bn(o[k]) : `<span class="na">তথ্য নেই</span>`;
+    const brtaNote = b ? `${bn(current.nMonths)} মাসিক প্রতিবেদন` : "২০২৩ সাল থেকে";
+    document.getElementById("totals").innerHTML = `
+      <tr><th></th><th>দুর্ঘটনা</th><th>নিহত</th><th>আহত</th></tr>
+      <tr><td><span class="src"><i class="dot" style="background:var(--brta)"></i>বিআরটিএ (সরকারি)</span><span class="note">${brtaNote}</span></td>
+          <td>${cell(b, "accidents")}</td><td>${cell(b, "deaths")}</td><td>${cell(b, "injuries")}</td></tr>
+      <tr><td><span class="src"><i class="dot" style="background:var(--rsf)"></i>রোড সেফটি ফাউন্ডেশন</span><span class="note">${r ? r.note : "এই সময়ের প্রতিবেদন পাওয়া যায়নি"}</span></td>
+          <td>${cell(r, "accidents")}</td><td>${cell(r, "deaths")}</td><td>${cell(r, "injuries")}</td></tr>`;
+    document.getElementById("period").textContent = periodText();
+  }
+  function renderRank() {
+    const m = state.measure, el = document.getElementById("rank");
+    document.getElementById("rank-title").textContent = `বিভাগভিত্তিক ${MEASURES[m]}`;
+    if (!current.hasData) { el.innerHTML = `<li class="empty">এই সময়ের বিভাগভিত্তিক তথ্য নেই (বিআরটিএ ২০২৩ থেকে)।</li>`; return; }
+    const sorted = [...DIVISIONS].sort((a, b) => current.agg[b][m] - current.agg[a][m]);
+    const max = current.agg[sorted[0]][m] || 1;
+    el.innerHTML = sorted.map(d => `<li><button type="button" data-d="${d}" aria-pressed="${state.selected === d}">
+        <span>${nameBn[d]}</span><span class="bar" style="width:${(100 * current.agg[d][m] / max).toFixed(1)}%"></span>
+        <span class="val">${fmt(current.agg[d][m], m)}</span></button></li>`).join("");
+    el.querySelectorAll("button").forEach(b => b.addEventListener("click", () => select(b.dataset.d)));
+  }
+  function renderVehicles() {
+    const el = document.getElementById("vehicles");
+    const tot = {};
+    brtaVeh.filter(r => inPeriod(r.year, r.month)).forEach(r => { tot[r.group] = (tot[r.group] || 0) + r.deaths; });
+    const groups = Object.keys(VEHICLE_BN).filter(g => tot[g] != null);
+    if (!groups.length) { el.innerHTML = `<li class="empty">এই সময়ের যানবাহনভিত্তিক তথ্য নেই (বিআরটিএ মার্চ ২০২৩ থেকে)।</li>`; return; }
+    const sum = groups.reduce((s, g) => s + tot[g], 0);
+    const order = groups.filter(g => g !== "Van / other").sort((a, b) => tot[b] - tot[a]).concat(groups.includes("Van / other") ? ["Van / other"] : []);
+    const max = Math.max(...order.map(g => tot[g]));
+    el.innerHTML = order.map(g => `<li class="item"><span>${VEHICLE_BN[g]}</span>
+        <span class="bar" style="width:${(100 * tot[g] / max).toFixed(1)}%"></span>
+        <span class="val">${bn(tot[g])} <small style="color:var(--muted);font-weight:500">(${bn(100 * tot[g] / sum)}%)</small></span></li>`).join("");
+  }
+  function renderTrend() {
+    const svg = document.getElementById("trend");
+    const W = svg.clientWidth || 600, H = 190, P = { l: 40, r: 12, t: 10, b: 24 };
+    const m = state.measure === "rate" ? "deaths" : state.measure;
+    const who = state.selected;
+    const brtaSeries = CALENDAR.map(c => {
+      const rs = brta.filter(r => r.year === c.y && r.month === c.m && (!who || r.division === who));
+      return rs.length ? rs.reduce((s, r) => s + r[m], 0) : null;
+    });
+    const rsfSeries = who ? CALENDAR.map(() => null) : CALENDAR.map(c => {
+      const r = rsf.find(x => x.year === c.y && x.month === c.m);
+      return r && r[m] != null ? r[m] : null;
+    });
+    const all = brtaSeries.concat(rsfSeries).filter(v => v != null);
+    const max = Math.max(...all) * 1.1;
+    const step = (W - P.l - P.r) / (CALENDAR.length - 1);
+    const x = i => P.l + i * step, y = v => H - P.b - v / max * (H - P.t - P.b);
+    const path = s => s.map((v, i) => v == null ? null : [x(i), y(v)])
+      .reduce((acc, p, i, arr) => acc + (p ? `${!arr[i - 1] ? "M" : "L"}${p[0].toFixed(1)},${p[1].toFixed(1)}` : ""), "");
+    const dots = (s, c) => s.map((v, i) => v != null && (s[i - 1] == null && s[i + 1] == null)
+      ? `<circle cx="${x(i)}" cy="${y(v)}" r="2.5" fill="${c}"/>` : "").join("");
+    const shade = CALENDAR.map((c, i) => inPeriod(c.y, c.m) && !(state.year === "all" && state.month === "all")
+      ? `<rect x="${x(i) - step / 2}" y="${P.t}" width="${step}" height="${H - P.t - P.b}" fill="#eb6834" opacity=".12"/>` : "").join("");
+    const grid = [0, 0.5, 1].map(f => {
+      const v = max / 1.1 * f, py = y(v);
+      return `<line x1="${P.l}" x2="${W - P.r}" y1="${py}" y2="${py}" stroke="#e1e0d9"/>
+              <text x="${P.l - 6}" y="${py + 4}" text-anchor="end" font-size="11" fill="#898781">${bn(Math.round(v))}</text>`;
+    }).join("");
+    const ticks = CALENDAR.map((c, i) => c.m === 1
+      ? `<text x="${x(i)}" y="${H - 6}" font-size="11" fill="#52514e">${bnYear(c.y)}</text>` : "").join("");
+    svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+    svg.innerHTML = `${shade}${grid}
+      <path d="${path(rsfSeries)}" fill="none" stroke="#eb6834" stroke-width="2"/>${dots(rsfSeries, "#eb6834")}
+      <path d="${path(brtaSeries)}" fill="none" stroke="#2a78d6" stroke-width="2"/>${dots(brtaSeries, "#2a78d6")}
+      ${ticks}<line id="cursor" y1="${P.t}" y2="${H - P.b}" stroke="#52514e" stroke-width="1" opacity="0"/>
+      <rect x="${P.l}" y="${P.t}" width="${W - P.l - P.r}" height="${H - P.t - P.b}" fill="transparent" id="hit"/>`;
+    const place = who ? `${nameBn[who]} বিভাগ` : "সারা দেশ";
+    document.getElementById("trend-title").innerHTML = `মাসভিত্তিক ${MEASURES[m]}: ${place}` +
+      (who ? ` <button class="clear" type="button" id="clear">সারা দেশ দেখুন</button>` : "");
+    document.getElementById("keys").innerHTML =
+      `<span><i style="background:#2a78d6"></i>বিআরটিএ (সরকারি, ২০২৩ থেকে)</span>` +
+      (who ? `<span>রোড সেফটি ফাউন্ডেশনের বিভাগভিত্তিক মাসিক হিসাব নেই</span>`
+           : `<span><i style="background:#eb6834"></i>রোড সেফটি ফাউন্ডেশন (সংবাদভিত্তিক, ফাঁকা = প্রতিবেদন পাওয়া যায়নি)</span>`);
+    const clear = document.getElementById("clear");
+    if (clear) clear.addEventListener("click", () => select(null));
+    const readout = document.getElementById("readout"), cursor = svg.querySelector("#cursor");
+    const hit = svg.querySelector("#hit");
+    hit.addEventListener("mousemove", e => {
+      const r = svg.getBoundingClientRect();
+      const i = Math.max(0, Math.min(CALENDAR.length - 1, Math.round(((e.clientX - r.left) * W / r.width - P.l) / step)));
+      const c = CALENDAR[i], v = (s) => s[i] == null ? "–" : bn(s[i]);
+      cursor.setAttribute("x1", x(i)); cursor.setAttribute("x2", x(i)); cursor.setAttribute("opacity", ".5");
+      readout.textContent = `${BN_MONTHS[c.m - 1]} ${bnYear(c.y)} · বিআরটিএ: ${v(brtaSeries)}` + (who ? "" : ` · রোড সেফটি ফাউন্ডেশন: ${v(rsfSeries)}`);
+    });
+    hit.addEventListener("mouseleave", () => cursor.setAttribute("opacity", "0"));
+  }
+
+  function render() {
+    const { agg, nMonths } = aggregateDivisions();
+    const hasData = nMonths > 0;
+    current = { agg, nMonths, hasData, breaks: hasData ? rangeBreaks(DIVISIONS.map(d => agg[d][state.measure])) : [] };
+    document.getElementById("nodata").style.display = hasData ? "none" : "grid";
+    layer.setStyle(styleFor);
+    DIVISIONS.forEach(d => labels[d].setIcon(L.divIcon({
+      className: "label-icon", iconSize: [0, 0],
+      html: `<div class="div-label">${nameBn[d]}${hasData ? `<span>${fmt(agg[d][state.measure], state.measure)}</span>` : ""}</div>`,
+    })));
+    renderLegend(); renderTotals(); renderRank(); renderVehicles(); renderTrend();
+  }
+  function select(d) {
+    state.selected = state.selected === d ? null : d;
+    render();
+  }
+  let resizeTimer;
+  window.addEventListener("resize", () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(renderTrend, 120); });
+  render();
+})();
+</script>
+</body>
+</html>
