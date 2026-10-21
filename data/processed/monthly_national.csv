@@ -40,8 +40,8 @@ year,month,month_name,accidents,deaths,injuries,deaths_per_day,deaths_per_accide
 2024,3,Mar,,573.0,,18.48,,True,RSF,https://today.thefinancialexpress.com.bd/print/679-killed-934-injured-rsf-1715531825,back-reference
 2024,4,Apr,,679.0,934.0,22.63,,True,RSF,https://today.thefinancialexpress.com.bd/print/679-killed-934-injured-rsf-1715531825,
 2024,5,May,,,,,,False,RSF,,
-2024,6,Jun,,,,,,False,RSF,,
-2024,7,Jul,,,,,,False,RSF,,
+2024,6,Jun,726.0,644.0,1082.0,21.47,0.89,True,RSF,https://www.tbsnews.net/bangladesh/37-increase-fatalities-june-compared-may-road-safety-foundation-899971,published 2024-07-15
+2024,7,Jul,452.0,487.0,679.0,15.71,1.08,True,RSF,https://www.tbsnews.net/bangladesh/487-people-die-452-road-accidents-july-rsf-917271,published 2024-08-15
 2024,8,Aug,,,,,,False,RSF,,
 2024,9,Sep,392.0,426.0,813.0,14.2,1.09,True,RSF,https://www.dhakatribune.com/bangladesh/361057/426-lives-lost-on-the-roads-in-september,
 2024,10,Oct,443.0,469.0,837.0,15.13,1.06,True,RSF,https://en.ittefaq.com.bd/9582/469-dead-837-injured-in-oct-road-crashes-in,

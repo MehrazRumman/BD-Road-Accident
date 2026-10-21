@@ -1,6 +1,6 @@
 year,accidents,deaths,injuries,motorcycle_accidents,motorcycle_deaths,pedestrian_deaths,women_deaths,children_deaths,source_url,coverage,source,deaths_per_accident,motorcycle_death_share_pct,pedestrian_death_share_pct
 2021,5371.0,6284.0,7468.0,2078.0,2214.0,1523.0,927.0,734.0,https://unb.com.bd/category/Bangladesh/perilous-roads-in-bangladesh-6284-killed-in-2021-rsf/85512,full year,RSF,1.17,35.2,24.2
-2022,6829.0,7713.0,12615.0,,3091.0,,1061.0,1143.0,https://old.thefinancialexpress.com.bd/national/incidents-of-road-accidents-fatalities-jumped-in-2022-1673077056,full year,RSF,1.13,40.1,
+2022,6829.0,7713.0,12615.0,2973.0,3091.0,1627.0,1061.0,1143.0,https://old.thefinancialexpress.com.bd/national/incidents-of-road-accidents-fatalities-jumped-in-2022-1673077056,full year,RSF,1.13,40.1,21.1
 2023,6911.0,6524.0,11407.0,2532.0,2487.0,,974.0,1128.0,https://www.dhakatribune.com/bangladesh/337884/report-over-1-100-children-killed-in-road,full year,RSF,0.94,38.1,
 2024,6927.0,7294.0,12019.0,2761.0,2609.0,1535.0,893.0,1152.0,https://en.prothomalo.com/bangladesh/m4kzejfpvx,full year,RSF,1.05,35.8,21.0
 2025,7584.0,7359.0,16476.0,3029.0,2671.0,1564.0,962.0,1008.0,https://en.prothomalo.com/bangladesh/accident/35tuiqg3oi,full year,RSF,0.97,36.3,21.3
