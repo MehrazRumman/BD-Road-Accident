@@ -138,10 +138,11 @@ BD-Road-Accident/
 
 ## Limitations
 
-- RSF counts **media-reported** accidents only, so the real toll is higher. The WHO's modelled estimate for 2021 is
-  about five times RSF's count.
-- 20 of the 69 months have no RSF report that could be confirmed.
-- Full vehicle-type and division tables exist only for the months the press reproduced them.
+- RSF counts **media-reported** accidents and BRTA counts those recorded by its offices, so both undercount. The
+  WHO's modelled estimate for 2021 is about five times RSF's count.
+- 8 of the 69 months (all in 2021–2022) have no figure from either source. BRTA's monthly reports start in 2023.
+- RSF's full vehicle and division tables exist only for the months the press reproduced them. BRTA has both every
+  month, but counts pedestrians under the vehicle that hit them, so vehicle shares differ between the sources.
 
 ## Run it
 
@@ -157,8 +158,9 @@ Run `01_data_cleaning.ipynb` first, then `02_analysis.ipynb`.
 
 ## Credits
 
-- **Road Safety Foundation (RSF)**, Bangladesh, for the monthly and annual road accident reports all figures come
-  from.
+- **Road Safety Foundation (RSF)**, Bangladesh, for its monthly and annual road accident reports.
+- **Bangladesh Road Transport Authority (BRTA)** for its official monthly road accident reports, published on
+  [brta.gov.bd](https://brta.gov.bd).
 - **[Deadly Roads: Bangladesh 2000–2025](https://github.com/ahasan722/bangladesh-road-crashes-2000-2025)** by
   ahasan722, for the transcribed RSF data in `data/raw/deadly_roads/`, used under
   [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
