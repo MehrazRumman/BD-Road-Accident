@@ -60,6 +60,9 @@ BD-Road-Accident/
 ├── data/
 │   ├── raw/                  # source data as collected (never edited by hand after download)
 │   │   ├── deadly_roads/     # RSF figures from the Deadly Roads project, with citations
+│   │   ├── brta/             # notes on the BRTA reports and how they were checked
+│   │   ├── brta_monthly_reports.csv
+│   │   ├── brta_vehicle_deaths.csv
 │   │   ├── rsf_manual_additions.csv
 │   │   └── division_population_2022.csv
 │   └── processed/            # clean tables written by 01_data_cleaning.ipynb
@@ -73,10 +76,10 @@ BD-Road-Accident/
 ## Notebooks
 
 1. [`notebooks/01_data_cleaning.ipynb`](notebooks/01_data_cleaning.ipynb): loads the raw files, fixes wrong
-   years, removes duplicates and other organisations' figures, checks coverage and consistency, and writes the
-   processed tables.
+   years, removes duplicates and other organisations' figures, checks the BRTA transcription against each report's
+   totals, checks coverage and consistency, and writes the processed tables.
 2. [`notebooks/02_analysis.ipynb`](notebooks/02_analysis.ipynb): deaths by year, vehicle type, division, month,
-   season, Eid and time of day.
+   season, Eid and time of day, plus a comparison of the two sources.
 
 ## Key findings
 
