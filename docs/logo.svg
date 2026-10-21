@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="সড়ক দুর্ঘটনা মানচিত্র লোগো">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1f9d5c"/>
+      <stop offset="1" stop-color="#0b5d33"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="url(#g)"/>
+  <!-- road in perspective -->
+  <path d="M24 58 L30 22 L34 22 L40 58 Z" fill="#f4f7f5" opacity=".95"/>
+  <path d="M32 26 V31 M32 36 V42 M32 47 V54" stroke="#0b5d33" stroke-width="2.4" stroke-linecap="round"/>
+  <!-- warning pin -->
+  <path d="M45 6 C38.9 6 34 10.9 34 17 C34 25 45 34 45 34 C45 34 56 25 56 17 C56 10.9 51.1 6 45 6 Z" fill="#e5383b" stroke="#fff" stroke-width="2"/>
+  <path d="M45 11 V18" stroke="#fff" stroke-width="2.8" stroke-linecap="round"/>
+  <circle cx="45" cy="22.5" r="1.7" fill="#fff"/>
+</svg>

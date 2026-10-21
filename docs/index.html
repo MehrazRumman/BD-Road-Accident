@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>বাংলাদেশ সড়ক দুর্ঘটনা মানচিত্র</title>
 <meta name="description" content="বাংলাদেশের বিভাগভিত্তিক সড়ক দুর্ঘটনা, নিহত ও আহতের সংখ্যা (বিআরটিএ ২০২৩–২০২৬) এবং রোড সেফটি ফাউন্ডেশনের জাতীয় হিসাব (২০২১–২০২৬)।">
+<link rel="icon" type="image/svg+xml" href="logo.svg">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -41,6 +42,8 @@
   header .eyebrow { font-size: 13px; letter-spacing: .02em; color: #b7d3f6; font-weight: 500; }
   header h1 { margin: 2px 0 0; font-size: clamp(24px, 3.4vw, 36px); font-weight: 700; letter-spacing: -0.01em; line-height: 1.25; }
   header p { margin: 6px 0 0; color: #cde2fb; max-width: 760px; }
+  .brand { display: flex; align-items: center; gap: 12px; }
+  .brand img { width: clamp(40px, 4.4vw, 52px); height: auto; flex: none; border-radius: 12px; box-shadow: 0 4px 14px rgba(0,0,0,.25); }
   .stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
   .stat {
     background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.14); border-radius: 12px;
@@ -207,7 +210,7 @@
 <header>
   <div>
     <div class="eyebrow">ইন্টারঅ্যাক্টিভ মানচিত্র · ২০২১–২০২৬</div>
-    <h1>বাংলাদেশ সড়ক দুর্ঘটনা মানচিত্র</h1>
+    <h1 class="brand"><img src="logo.svg" alt="" width="48" height="48">বাংলাদেশ সড়ক দুর্ঘটনা মানচিত্র</h1>
     <p>কোন বিভাগে কত দুর্ঘটনা, কতজন নিহত ও আহত, আর জাতীয় মহাসড়কের কোথায় দুর্ঘটনার ঝুঁকি বেশি। বছর, মাস ও মহাসড়ক বেছে নিয়ে দেখুন।</p>
   </div>
   <div class="stats" id="hero-stats"></div>
