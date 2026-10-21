@@ -76,10 +76,37 @@ BD-Road-Accident/
 - Deaths per day are **highest from January to July** and lowest from August to October. **Eid travel** windows
   have 26–51% more deaths per day than normal.
 
+## Charts
+
+### By year
+
 | | |
 |---|---|
-| ![Motorcycle deaths](figures/03_motorcycle_deaths.png) | ![Vehicle mix](figures/04_vehicle_mix.png) |
-| ![Division share](figures/06_division_share.png) | ![Seasonal index](figures/09_seasonal_index.png) |
+| ![Deaths per year](figures/01_deaths_per_year.png) | ![Accidents, deaths and injuries indexed](figures/02_indexed_trend.png) |
+
+### By vehicle
+
+| | |
+|---|---|
+| ![Motorcycle deaths per year](figures/03_motorcycle_deaths.png) | ![Deaths by vehicle type](figures/04_vehicle_mix.png) |
+
+![Motorcycle share of monthly deaths](figures/05_motorcycle_share_monthly.png)
+
+### By division
+
+| | |
+|---|---|
+| ![Division share of accidents vs population](figures/06_division_share.png) | ![Division with fewest accidents](figures/07_division_lowest.png) |
+
+### Time of year and day
+
+![Deaths per day by month](figures/08_monthly_heatmap.png)
+
+| | |
+|---|---|
+| ![Seasonal index](figures/09_seasonal_index.png) | ![Eid travel deaths](figures/10_eid.png) |
+
+![Time of day](figures/11_time_of_day.png)
 
 ## Limitations
 
