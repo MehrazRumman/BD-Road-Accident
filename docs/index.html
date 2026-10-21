@@ -75,6 +75,8 @@
   .map-card { padding: 0; overflow: hidden; position: relative; }
   #map { height: min(74vh, 680px); min-height: 460px; background: #f7f9fb; }
   .leaflet-container { font-family: inherit; }
+  /* Clicking a division focuses its SVG path; hide the browser's square focus box (selection is shown by the orange outline). */
+  .leaflet-container path.leaflet-interactive:focus, .leaflet-container .leaflet-interactive:focus { outline: none; }
   .div-label {
     background: rgba(255,255,255,.88); border-radius: 8px; padding: 2px 7px;
     box-shadow: 0 1px 3px rgba(0,0,0,.15);
@@ -88,6 +90,7 @@
     font-family: inherit; font-size: 13px; border-radius: 10px; padding: 8px 10px;
     border: 1px solid var(--line); box-shadow: 0 6px 18px rgba(0,0,0,.12);
   }
+  .leaflet-tooltip.tip { opacity: 1 !important; background: #fff; }
   .tip b { font-size: 14px; }
   .tip table { border-collapse: collapse; margin-top: 4px; }
   .tip td { padding: 1px 0; }
@@ -429,14 +432,14 @@
   }).addTo(map);
   map.fitBounds(layer.getBounds(), { padding: [12, 12] });
   map.setMaxBounds(layer.getBounds().pad(0.6));
-  map.createPane("labels").style.zIndex = 700;
+  map.createPane("labels").style.zIndex = 630;
   map.getPane("labels").style.pointerEvents = "none";
   const labels = Object.fromEntries(DIVISIONS.map(d => [d, L.marker(LABEL_AT[d], {
     pane: "labels", interactive: false, icon: L.divIcon({ className: "label-icon", html: "", iconSize: [0, 0] }),
   }).addTo(map)]));
 
   // ---------- Accident-prone spots ----------
-  map.createPane("spots").style.zIndex = 650;
+  map.createPane("spots").style.zIndex = 620;  // below labels (630), tooltips (650) and popups (700)
   const highwaySel = document.getElementById("highway");
   const HW = spotData.highways;
   const hwOrder = Object.keys(HW).sort((a, b) => parseInt(a.slice(1)) - parseInt(b.slice(1)));
