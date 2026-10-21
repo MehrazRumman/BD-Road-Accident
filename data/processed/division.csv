@@ -1,0 +1,200 @@
+year,month,period_type,division,measure,value,source,source_url,note
+2021,,year,Dhaka,accidents,1344.0,RSF,https://unb.com.bd/category/Bangladesh/perilous-roads-in-bangladesh-6284-killed-in-2021-rsf/85512,highest/lowest only
+2021,,year,Rangpur,accidents,398.0,RSF,https://unb.com.bd/category/Bangladesh/perilous-roads-in-bangladesh-6284-killed-in-2021-rsf/85512,highest/lowest only
+2021,,year,Dhaka,deaths,1545.0,RSF,https://unb.com.bd/category/Bangladesh/perilous-roads-in-bangladesh-6284-killed-in-2021-rsf/85512,highest/lowest only
+2021,,year,Rangpur,deaths,443.0,RSF,https://unb.com.bd/category/Bangladesh/perilous-roads-in-bangladesh-6284-killed-in-2021-rsf/85512,highest/lowest only
+2021,3.0,month,Dhaka,accidents,119.0,RSF,https://old.thefinancialexpress.com.bd/national/road-crashes-leave-513-dead-and-598-injured-last-month-report-1617611464,highest
+2021,3.0,month,Rangpur,accidents,20.0,RSF,https://old.thefinancialexpress.com.bd/national/road-crashes-leave-513-dead-and-598-injured-last-month-report-1617611464,lowest
+2021,3.0,month,Dhaka,deaths,136.0,RSF,https://old.thefinancialexpress.com.bd/national/road-crashes-leave-513-dead-and-598-injured-last-month-report-1617611464,highest
+2021,3.0,month,Rangpur,deaths,18.0,RSF,https://old.thefinancialexpress.com.bd/national/road-crashes-leave-513-dead-and-598-injured-last-month-report-1617611464,lowest
+2021,5.0,month,Dhaka,accidents,115.0,RSF,https://thefinancialexpress.com.bd/national/562-killed-549-injured-in-road-accidents-in-may-1622711546,highest
+2021,5.0,month,Mymensingh,accidents,26.0,RSF,https://thefinancialexpress.com.bd/national/562-killed-549-injured-in-road-accidents-in-may-1622711546,lowest
+2021,5.0,month,Dhaka,deaths,144.0,RSF,https://thefinancialexpress.com.bd/national/562-killed-549-injured-in-road-accidents-in-may-1622711546,highest
+2021,5.0,month,Mymensingh,deaths,27.0,RSF,https://thefinancialexpress.com.bd/national/562-killed-549-injured-in-road-accidents-in-may-1622711546,lowest
+2021,6.0,month,Dhaka,accidents,86.0,RSF,https://mail.thefinancialexpress.com.bd/national/road-crashes-claim-398-lives-in-june-1625657975?amp=true,
+2021,6.0,month,Sylhet,accidents,23.0,RSF,https://mail.thefinancialexpress.com.bd/national/road-crashes-claim-398-lives-in-june-1625657975?amp=true,
+2021,6.0,month,Dhaka,deaths,103.0,RSF,https://mail.thefinancialexpress.com.bd/national/road-crashes-claim-398-lives-in-june-1625657975?amp=true,
+2021,6.0,month,Sylhet,deaths,22.0,RSF,https://mail.thefinancialexpress.com.bd/national/road-crashes-claim-398-lives-in-june-1625657975?amp=true,
+2021,11.0,month,Dhaka,accidents,83.0,RSF,https://thefinancialexpress.com.bd/national/road-crashes-claim-413-lives-in-november-1638623303,highest
+2021,11.0,month,Barishal,accidents,22.0,RSF,https://thefinancialexpress.com.bd/national/road-crashes-claim-413-lives-in-november-1638623303,lowest
+2021,11.0,month,Dhaka,deaths,104.0,RSF,https://thefinancialexpress.com.bd/national/road-crashes-claim-413-lives-in-november-1638623303,highest
+2021,11.0,month,Barishal,deaths,24.0,RSF,https://thefinancialexpress.com.bd/national/road-crashes-claim-413-lives-in-november-1638623303,lowest
+2021,12.0,month,Dhaka,accidents,102.0,RSF,https://www.tbsnews.net/bangladesh/december-sees-418-deaths-road-accidents-351778,highest
+2021,12.0,month,Dhaka,deaths,113.0,RSF,https://www.tbsnews.net/bangladesh/december-sees-418-deaths-road-accidents-351778,highest
+2022,,year,Dhaka,accidents,1841.0,RSF,https://www.thedailystar.net/opinion/editorial/news/safe-roads-smart-cities-3216316,
+2022,,year,Dhaka,deaths,2044.0,RSF,https://www.thedailystar.net/opinion/editorial/news/safe-roads-smart-cities-3216316,
+2022,,year,Dhaka,share_pct,27.0,RSF,https://en.prothomalo.com/bangladesh/accident/nr3n0krxfx,share of accidents
+2022,5.0,month,Dhaka,accidents,127.0,RSF,https://today.thefinancialexpress.com.bd/print/641-killed-in-528-crashes-in-may-1654538899,
+2022,5.0,month,Dhaka,deaths,159.0,RSF,https://today.thefinancialexpress.com.bd/print/641-killed-in-528-crashes-in-may-1654538899,
+2022,6.0,month,Dhaka,accidents,117.0,RSF,https://unb.com.bd/category/bangladesh/road-crashes-claim-524-lives-in-june/96260,share of accidents
+2022,6.0,month,Sylhet,accidents,13.0,RSF,https://unb.com.bd/category/bangladesh/road-crashes-claim-524-lives-in-june/96260,share of accidents
+2022,6.0,month,Dhaka,deaths,139.0,RSF,https://unb.com.bd/category/bangladesh/road-crashes-claim-524-lives-in-june/96260,share of accidents
+2022,6.0,month,Sylhet,deaths,14.0,RSF,https://unb.com.bd/category/bangladesh/road-crashes-claim-524-lives-in-june/96260,share of accidents
+2022,6.0,month,Dhaka,share_pct,25.05,RSF,https://unb.com.bd/category/bangladesh/road-crashes-claim-524-lives-in-june/96260,share of accidents
+2022,6.0,month,Chattogram,share_pct,16.48,RSF,https://unb.com.bd/category/bangladesh/road-crashes-claim-524-lives-in-june/96260,share of accidents
+2022,6.0,month,Rajshahi,share_pct,15.41,RSF,https://unb.com.bd/category/bangladesh/road-crashes-claim-524-lives-in-june/96260,share of accidents
+2022,6.0,month,Khulna,share_pct,14.34,RSF,https://unb.com.bd/category/bangladesh/road-crashes-claim-524-lives-in-june/96260,share of accidents
+2022,6.0,month,Rangpur,share_pct,10.49,RSF,https://unb.com.bd/category/bangladesh/road-crashes-claim-524-lives-in-june/96260,share of accidents
+2022,6.0,month,Barishal,share_pct,9.0,RSF,https://unb.com.bd/category/bangladesh/road-crashes-claim-524-lives-in-june/96260,share of accidents
+2022,6.0,month,Mymensingh,share_pct,6.42,RSF,https://unb.com.bd/category/bangladesh/road-crashes-claim-524-lives-in-june/96260,share of accidents
+2022,6.0,month,Sylhet,share_pct,2.78,RSF,https://unb.com.bd/category/bangladesh/road-crashes-claim-524-lives-in-june/96260,share of accidents
+2022,7.0,month,Dhaka,accidents,199.0,RSF,https://unb.com.bd/category/Bangladesh/739-lives-lost-on-roads-in-july-in-bangladesh-rsf/98335,share of accidents
+2022,7.0,month,Dhaka,deaths,228.0,RSF,https://unb.com.bd/category/Bangladesh/739-lives-lost-on-roads-in-july-in-bangladesh-rsf/98335,share of accidents
+2022,7.0,month,Barishal,deaths,46.0,RSF,https://unb.com.bd/category/Bangladesh/739-lives-lost-on-roads-in-july-in-bangladesh-rsf/98335,share of accidents
+2022,7.0,month,Dhaka,share_pct,31.48,RSF,https://unb.com.bd/category/Bangladesh/739-lives-lost-on-roads-in-july-in-bangladesh-rsf/98335,share of accidents
+2022,7.0,month,Chattogram,share_pct,16.61,RSF,https://unb.com.bd/category/Bangladesh/739-lives-lost-on-roads-in-july-in-bangladesh-rsf/98335,share of accidents
+2022,7.0,month,Rajshahi,share_pct,15.18,RSF,https://unb.com.bd/category/Bangladesh/739-lives-lost-on-roads-in-july-in-bangladesh-rsf/98335,share of accidents
+2022,7.0,month,Khulna,share_pct,13.13,RSF,https://unb.com.bd/category/Bangladesh/739-lives-lost-on-roads-in-july-in-bangladesh-rsf/98335,share of accidents
+2022,7.0,month,Mymensingh,share_pct,6.69,RSF,https://unb.com.bd/category/Bangladesh/739-lives-lost-on-roads-in-july-in-bangladesh-rsf/98335,share of accidents
+2022,7.0,month,Rangpur,share_pct,6.0,RSF,https://unb.com.bd/category/Bangladesh/739-lives-lost-on-roads-in-july-in-bangladesh-rsf/98335,share of accidents
+2022,7.0,month,Barishal,share_pct,5.69,RSF,https://unb.com.bd/category/Bangladesh/739-lives-lost-on-roads-in-july-in-bangladesh-rsf/98335,share of accidents
+2022,7.0,month,Sylhet,share_pct,4.9,RSF,https://unb.com.bd/category/Bangladesh/739-lives-lost-on-roads-in-july-in-bangladesh-rsf/98335,share of accidents
+2022,8.0,month,Dhaka,accidents,127.0,RSF,https://www.tbsnews.net/node/489326,share of accidents
+2022,8.0,month,Dhaka,deaths,242.0,RSF,https://www.tbsnews.net/node/489326,share of accidents
+2022,8.0,month,Sylhet,deaths,21.0,RSF,https://www.tbsnews.net/node/489326,share of accidents
+2022,8.0,month,Dhaka,share_pct,27.72,RSF,https://www.tbsnews.net/node/489326,share of accidents
+2022,8.0,month,Chattogram,share_pct,21.61,RSF,https://www.tbsnews.net/node/489326,share of accidents
+2022,8.0,month,Rajshahi,share_pct,15.28,RSF,https://www.tbsnews.net/node/489326,share of accidents
+2022,8.0,month,Khulna,share_pct,10.08,RSF,https://www.tbsnews.net/node/489326,share of accidents
+2022,8.0,month,Rangpur,share_pct,8.95,RSF,https://www.tbsnews.net/node/489326,share of accidents
+2022,8.0,month,Barishal,share_pct,8.8,RSF,https://www.tbsnews.net/node/489326,share of accidents
+2022,8.0,month,Mymensingh,share_pct,7.42,RSF,https://www.tbsnews.net/node/489326,share of accidents
+2022,8.0,month,Sylhet,share_pct,4.14,RSF,https://www.tbsnews.net/node/489326,share of accidents
+2022,11.0,month,Dhaka,accidents,142.0,RSF,https://www.dhakatribune.com/bangladesh/299745/report-554-killed-in-road-accidents-in-november,
+2022,11.0,month,Dhaka,deaths,174.0,RSF,https://www.dhakatribune.com/bangladesh/299745/report-554-killed-in-road-accidents-in-november,
+2023,2.0,month,Dhaka,share_pct,24.84,RSF,https://unb.com.bd/category/Bangladesh/487-deaths-in-439-road-accidents-in-feb-road-safety-foundation/111468,share of deaths
+2023,2.0,month,Rajshahi,share_pct,19.71,RSF,https://unb.com.bd/category/Bangladesh/487-deaths-in-439-road-accidents-in-feb-road-safety-foundation/111468,share of deaths
+2023,2.0,month,Chattogram,share_pct,18.89,RSF,https://unb.com.bd/category/Bangladesh/487-deaths-in-439-road-accidents-in-feb-road-safety-foundation/111468,share of deaths
+2023,2.0,month,Khulna,share_pct,9.85,RSF,https://unb.com.bd/category/Bangladesh/487-deaths-in-439-road-accidents-in-feb-road-safety-foundation/111468,share of deaths
+2023,5.0,month,Dhaka,accidents,134.0,RSF,https://www.tbsnews.net/node/646738,year unknown
+2023,5.0,month,Sylhet,accidents,21.0,RSF,https://www.tbsnews.net/node/646738,year unknown
+2023,5.0,month,Dhaka,deaths,102.0,RSF,https://www.tbsnews.net/node/646738,year unknown
+2023,9.0,month,Dhaka,accidents,121.0,RSF,https://www.dhakatribune.com/bangladesh/327393/report-394-lives-lost-on-roads-across-bangladesh,
+2023,9.0,month,Sylhet,accidents,20.0,RSF,https://www.dhakatribune.com/bangladesh/327393/report-394-lives-lost-on-roads-across-bangladesh,
+2023,9.0,month,Dhaka,deaths,116.0,RSF,https://www.dhakatribune.com/bangladesh/327393/report-394-lives-lost-on-roads-across-bangladesh,
+2023,9.0,month,Mymensingh,deaths,23.0,RSF,https://www.dhakatribune.com/bangladesh/327393/report-394-lives-lost-on-roads-across-bangladesh,
+2023,11.0,month,Dhaka,accidents,138.0,RSF,https://unb.com.bd/category/Bangladesh/467-lives-lost-on-roads-across-country-in-nov-road-safety-foundation/127181,
+2023,11.0,month,Sylhet,accidents,21.0,RSF,https://unb.com.bd/category/Bangladesh/467-lives-lost-on-roads-across-country-in-nov-road-safety-foundation/127181,
+2023,11.0,month,Dhaka,deaths,119.0,RSF,https://unb.com.bd/category/Bangladesh/467-lives-lost-on-roads-across-country-in-nov-road-safety-foundation/127181,
+2023,11.0,month,Sylhet,deaths,16.0,RSF,https://unb.com.bd/category/Bangladesh/467-lives-lost-on-roads-across-country-in-nov-road-safety-foundation/127181,
+2024,,year,Dhaka,accidents,1582.0,RSF,https://en.prothomalo.com/bangladesh/m4kzejfpvx,highest/lowest only
+2024,,year,Sylhet,accidents,435.0,RSF,https://en.prothomalo.com/bangladesh/m4kzejfpvx,highest/lowest only
+2024,,year,Dhaka,deaths,1840.0,RSF,https://en.prothomalo.com/bangladesh/m4kzejfpvx,highest/lowest only
+2024,,year,Sylhet,deaths,443.0,RSF,https://en.prothomalo.com/bangladesh/m4kzejfpvx,highest/lowest only
+2024,2.0,month,Chattogram,accidents,126.0,RSF,https://www.tbsnews.net/node/808498,
+2024,2.0,month,Dhaka,deaths,120.0,RSF,https://www.tbsnews.net/node/808498,
+2024,9.0,month,Dhaka,accidents,124.0,RSF,https://www.banglanews24.com/english/national/news/bd/157822.details,
+2024,9.0,month,Barishal,accidents,15.0,RSF,https://www.banglanews24.com/english/national/news/bd/157822.details,
+2024,9.0,month,Dhaka,deaths,128.0,RSF,https://www.banglanews24.com/english/national/news/bd/157822.details,
+2024,9.0,month,Barishal,deaths,16.0,RSF,https://www.banglanews24.com/english/national/news/bd/157822.details,
+2024,10.0,month,Dhaka,accidents,131.0,RSF,https://en.ittefaq.com.bd/9582/469-dead-837-injured-in-oct-road-crashes-in,
+2024,10.0,month,Sylhet,accidents,22.0,RSF,https://en.ittefaq.com.bd/9582/469-dead-837-injured-in-oct-road-crashes-in,
+2024,10.0,month,Dhaka,deaths,144.0,RSF,https://en.ittefaq.com.bd/9582/469-dead-837-injured-in-oct-road-crashes-in,
+2024,10.0,month,Sylhet,deaths,24.0,RSF,https://en.ittefaq.com.bd/9582/469-dead-837-injured-in-oct-road-crashes-in,
+2024,10.0,month,Dhaka,share_pct,29.57,RSF,https://en.ittefaq.com.bd/9582/469-dead-837-injured-in-oct-road-crashes-in,share of accidents
+2024,10.0,month,Chattogram,share_pct,17.83,RSF,https://en.ittefaq.com.bd/9582/469-dead-837-injured-in-oct-road-crashes-in,share of accidents
+2024,10.0,month,Rajshahi,share_pct,15.34,RSF,https://en.ittefaq.com.bd/9582/469-dead-837-injured-in-oct-road-crashes-in,share of accidents
+2024,10.0,month,Khulna,share_pct,9.0,RSF,https://en.ittefaq.com.bd/9582/469-dead-837-injured-in-oct-road-crashes-in,share of accidents
+2025,,year,Dhaka,accidents,2139.0,RSF,https://thefinancialexpress.com.bd/national/road-accidents-rise-60pc-deaths-36pc-in-five-years,
+2025,,year,Dhaka,deaths,2018.0,RSF,https://thefinancialexpress.com.bd/national/road-accidents-rise-60pc-deaths-36pc-in-five-years,
+2025,1.0,month,Dhaka,accidents,172.0,RSF,https://thefinancialexpress.com.bd/national/bd-sees-621-road-accidents-in-jan-608-people-killed,
+2025,1.0,month,Barishal,accidents,31.0,RSF,https://thefinancialexpress.com.bd/national/bd-sees-621-road-accidents-in-jan-608-people-killed,
+2025,1.0,month,Dhaka,deaths,161.0,RSF,https://thefinancialexpress.com.bd/national/bd-sees-621-road-accidents-in-jan-608-people-killed,
+2025,1.0,month,Barishal,deaths,30.0,RSF,https://thefinancialexpress.com.bd/national/bd-sees-621-road-accidents-in-jan-608-people-killed,
+2025,2.0,month,Dhaka,accidents,205.0,RSF,https://www.dhakatribune.com/bangladesh/375738/road-accident-596-crashes-claim-578-lives-in-last,
+2025,2.0,month,Barishal,accidents,34.0,RSF,https://www.dhakatribune.com/bangladesh/375738/road-accident-596-crashes-claim-578-lives-in-last,
+2025,2.0,month,Dhaka,deaths,198.0,RSF,https://www.dhakatribune.com/bangladesh/375738/road-accident-596-crashes-claim-578-lives-in-last,
+2025,2.0,month,Barishal,deaths,34.0,RSF,https://www.dhakatribune.com/bangladesh/375738/road-accident-596-crashes-claim-578-lives-in-last,
+2025,3.0,month,Dhaka,accidents,182.0,RSF,https://www.dhakatribune.com/bangladesh/378488/road-crashes-claim-604-lives-in-march,
+2025,3.0,month,Sylhet,accidents,24.0,RSF,https://www.dhakatribune.com/bangladesh/378488/road-crashes-claim-604-lives-in-march,
+2025,3.0,month,Dhaka,deaths,184.0,RSF,https://www.dhakatribune.com/bangladesh/378488/road-crashes-claim-604-lives-in-march,
+2025,3.0,month,Sylhet,deaths,30.0,RSF,https://www.dhakatribune.com/bangladesh/378488/road-crashes-claim-604-lives-in-march,
+2025,3.0,month,Dhaka,share_pct,31.0,RSF,https://www.dhakatribune.com/bangladesh/378488/road-crashes-claim-604-lives-in-march,
+2025,4.0,month,Dhaka,accidents,173.0,RSF,https://www.dhakatribune.com/bangladesh/380943/588-killed-1-124-injured-in-road-accidents-in,
+2025,4.0,month,Rangpur,accidents,31.0,RSF,https://www.dhakatribune.com/bangladesh/380943/588-killed-1-124-injured-in-road-accidents-in,
+2025,4.0,month,Dhaka,deaths,154.0,RSF,https://www.dhakatribune.com/bangladesh/380943/588-killed-1-124-injured-in-road-accidents-in,
+2025,4.0,month,Rangpur,deaths,32.0,RSF,https://www.dhakatribune.com/bangladesh/380943/588-killed-1-124-injured-in-road-accidents-in,
+2025,7.0,month,Dhaka,accidents,117.0,RSF,https://www.dhakatribune.com/bangladesh/389368/rsf-report-47-students-among-418-killed-in-road,
+2025,7.0,month,Barishal,accidents,29.0,RSF,https://www.dhakatribune.com/bangladesh/389368/rsf-report-47-students-among-418-killed-in-road,
+2025,7.0,month,Dhaka,deaths,105.0,RSF,https://www.dhakatribune.com/bangladesh/389368/rsf-report-47-students-among-418-killed-in-road,
+2025,7.0,month,Barishal,deaths,16.0,RSF,https://www.dhakatribune.com/bangladesh/389368/rsf-report-47-students-among-418-killed-in-road,
+2025,7.0,month,Dhaka,share_pct,26.41,RSF,https://www.banglanews24.com/english/national/news/bd/183437.details,share of accidents
+2025,7.0,month,Mymensingh,share_pct,7.22,RSF,https://www.banglanews24.com/english/national/news/bd/183437.details,share of accidents
+2025,8.0,month,Dhaka,accidents,119.0,RSF,https://en.prothomalo.com/bangladesh/accident/92uxvdz8dp,share of accidents
+2025,8.0,month,Dhaka,deaths,117.0,RSF,https://en.prothomalo.com/bangladesh/accident/92uxvdz8dp,share of accidents
+2025,8.0,month,Barishal,deaths,16.0,RSF,https://en.prothomalo.com/bangladesh/accident/92uxvdz8dp,share of accidents
+2025,8.0,month,Dhaka,share_pct,26.38,RSF,https://en.prothomalo.com/bangladesh/accident/92uxvdz8dp,share of accidents
+2025,8.0,month,Chattogram,share_pct,21.28,RSF,https://en.prothomalo.com/bangladesh/accident/92uxvdz8dp,share of accidents
+2025,8.0,month,Rajshahi,share_pct,12.63,RSF,https://en.prothomalo.com/bangladesh/accident/92uxvdz8dp,share of accidents
+2025,8.0,month,Khulna,share_pct,9.97,RSF,https://en.prothomalo.com/bangladesh/accident/92uxvdz8dp,share of accidents
+2025,8.0,month,Rangpur,share_pct,9.53,RSF,https://en.prothomalo.com/bangladesh/accident/92uxvdz8dp,share of accidents
+2025,8.0,month,Sylhet,share_pct,9.09,RSF,https://en.prothomalo.com/bangladesh/accident/92uxvdz8dp,share of accidents
+2025,8.0,month,Mymensingh,share_pct,7.09,RSF,https://en.prothomalo.com/bangladesh/accident/92uxvdz8dp,share of accidents
+2025,8.0,month,Barishal,share_pct,4.0,RSF,https://en.prothomalo.com/bangladesh/accident/92uxvdz8dp,share of accidents
+2025,9.0,month,Barishal,deaths,14.0,RSF,https://www.dhakatribune.com/bangladesh/393162/rsf-417-lives-lost-on-roads-in-september-in,share of accidents
+2025,9.0,month,Dhaka,share_pct,28.69,RSF,https://www.dhakatribune.com/bangladesh/393162/rsf-417-lives-lost-on-roads-in-september-in,share of accidents
+2025,9.0,month,Chattogram,share_pct,22.0,RSF,https://www.dhakatribune.com/bangladesh/393162/rsf-417-lives-lost-on-roads-in-september-in,share of accidents
+2025,9.0,month,Rajshahi,share_pct,18.83,RSF,https://www.dhakatribune.com/bangladesh/393162/rsf-417-lives-lost-on-roads-in-september-in,share of accidents
+2025,9.0,month,Rangpur,share_pct,8.87,RSF,https://www.dhakatribune.com/bangladesh/393162/rsf-417-lives-lost-on-roads-in-september-in,share of accidents
+2025,9.0,month,Khulna,share_pct,6.72,RSF,https://www.dhakatribune.com/bangladesh/393162/rsf-417-lives-lost-on-roads-in-september-in,share of accidents
+2025,9.0,month,Mymensingh,share_pct,5.38,RSF,https://www.dhakatribune.com/bangladesh/393162/rsf-417-lives-lost-on-roads-in-september-in,share of accidents
+2025,9.0,month,Barishal,share_pct,3.58,RSF,https://www.dhakatribune.com/bangladesh/393162/rsf-417-lives-lost-on-roads-in-september-in,share of accidents
+2025,9.0,month,Sylhet,share_pct,3.35,RSF,https://www.dhakatribune.com/bangladesh/393162/rsf-417-lives-lost-on-roads-in-september-in,share of accidents
+2025,10.0,month,Dhaka,accidents,121.0,RSF,https://unb.com.bd/category/Bangladesh/bangladesh-sees-rise-in-road-accidents-deaths-in-october-rsf/173371,share of accidents
+2025,10.0,month,Sylhet,accidents,26.0,RSF,https://unb.com.bd/category/Bangladesh/bangladesh-sees-rise-in-road-accidents-deaths-in-october-rsf/173371,share of accidents
+2025,10.0,month,Dhaka,deaths,112.0,RSF,https://unb.com.bd/category/Bangladesh/bangladesh-sees-rise-in-road-accidents-deaths-in-october-rsf/173371,share of accidents
+2025,10.0,month,Sylhet,deaths,24.0,RSF,https://unb.com.bd/category/Bangladesh/bangladesh-sees-rise-in-road-accidents-deaths-in-october-rsf/173371,share of accidents
+2025,10.0,month,Dhaka,share_pct,24.89,RSF,https://unb.com.bd/category/Bangladesh/bangladesh-sees-rise-in-road-accidents-deaths-in-october-rsf/173371,share of accidents
+2025,10.0,month,Chattogram,share_pct,21.39,RSF,https://unb.com.bd/category/Bangladesh/bangladesh-sees-rise-in-road-accidents-deaths-in-october-rsf/173371,share of accidents
+2025,10.0,month,Khulna,share_pct,13.16,RSF,https://unb.com.bd/category/Bangladesh/bangladesh-sees-rise-in-road-accidents-deaths-in-october-rsf/173371,share of accidents
+2025,10.0,month,Rajshahi,share_pct,11.52,RSF,https://unb.com.bd/category/Bangladesh/bangladesh-sees-rise-in-road-accidents-deaths-in-october-rsf/173371,share of accidents
+2025,10.0,month,Rangpur,share_pct,11.31,RSF,https://unb.com.bd/category/Bangladesh/bangladesh-sees-rise-in-road-accidents-deaths-in-october-rsf/173371,share of accidents
+2025,10.0,month,Barishal,share_pct,6.37,RSF,https://unb.com.bd/category/Bangladesh/bangladesh-sees-rise-in-road-accidents-deaths-in-october-rsf/173371,share of accidents
+2025,10.0,month,Mymensingh,share_pct,5.96,RSF,https://unb.com.bd/category/Bangladesh/bangladesh-sees-rise-in-road-accidents-deaths-in-october-rsf/173371,share of accidents
+2025,10.0,month,Sylhet,share_pct,5.34,RSF,https://unb.com.bd/category/Bangladesh/bangladesh-sees-rise-in-road-accidents-deaths-in-october-rsf/173371,share of accidents
+2025,11.0,month,Dhaka,accidents,141.0,RSF,https://www.dhakatribune.com/bangladesh/399002/rsf-bangladesh-sees-rise-in-road-accidents,share of accidents
+2025,11.0,month,Sylhet,accidents,30.0,RSF,https://www.dhakatribune.com/bangladesh/399002/rsf-bangladesh-sees-rise-in-road-accidents,share of accidents
+2025,11.0,month,Dhaka,deaths,119.0,RSF,https://www.dhakatribune.com/bangladesh/399002/rsf-bangladesh-sees-rise-in-road-accidents,share of accidents
+2025,11.0,month,Sylhet,deaths,24.0,RSF,https://www.dhakatribune.com/bangladesh/399002/rsf-bangladesh-sees-rise-in-road-accidents,share of accidents
+2025,11.0,month,Dhaka,share_pct,26.4,RSF,https://www.dhakatribune.com/bangladesh/399002/rsf-bangladesh-sees-rise-in-road-accidents,share of accidents
+2025,11.0,month,Chattogram,share_pct,20.97,RSF,https://www.dhakatribune.com/bangladesh/399002/rsf-bangladesh-sees-rise-in-road-accidents,share of accidents
+2025,11.0,month,Rajshahi,share_pct,16.1,RSF,https://www.dhakatribune.com/bangladesh/399002/rsf-bangladesh-sees-rise-in-road-accidents,share of accidents
+2025,11.0,month,Khulna,share_pct,12.17,RSF,https://www.dhakatribune.com/bangladesh/399002/rsf-bangladesh-sees-rise-in-road-accidents,share of accidents
+2025,11.0,month,Rangpur,share_pct,7.11,RSF,https://www.dhakatribune.com/bangladesh/399002/rsf-bangladesh-sees-rise-in-road-accidents,share of accidents
+2025,11.0,month,Barishal,share_pct,6.36,RSF,https://www.dhakatribune.com/bangladesh/399002/rsf-bangladesh-sees-rise-in-road-accidents,share of accidents
+2025,11.0,month,Sylhet,share_pct,5.61,RSF,https://www.dhakatribune.com/bangladesh/399002/rsf-bangladesh-sees-rise-in-road-accidents,share of accidents
+2025,11.0,month,Mymensingh,share_pct,5.24,RSF,https://www.dhakatribune.com/bangladesh/399002/rsf-bangladesh-sees-rise-in-road-accidents,share of accidents
+2025,12.0,month,Chattogram,accidents,122.0,RSF,https://en.prothomalo.com/bangladesh/5adgycvhw6,
+2025,12.0,month,Barishal,accidents,29.0,RSF,https://en.prothomalo.com/bangladesh/5adgycvhw6,
+2025,12.0,month,Chattogram,deaths,107.0,RSF,https://en.prothomalo.com/bangladesh/5adgycvhw6,
+2025,12.0,month,Barishal,deaths,27.0,RSF,https://en.prothomalo.com/bangladesh/5adgycvhw6,
+2026,1.0,month,Dhaka,accidents,143.0,RSF,https://unb.com.bd/category/bangladesh/57-children-among-487-killed-in-january-road-crashes-in-bangladesh-rsf/179885,
+2026,1.0,month,Sylhet,accidents,24.0,RSF,https://unb.com.bd/category/bangladesh/57-children-among-487-killed-in-january-road-crashes-in-bangladesh-rsf/179885,
+2026,1.0,month,Dhaka,deaths,119.0,RSF,https://unb.com.bd/category/bangladesh/57-children-among-487-killed-in-january-road-crashes-in-bangladesh-rsf/179885,
+2026,1.0,month,Sylhet,deaths,18.0,RSF,https://unb.com.bd/category/bangladesh/57-children-among-487-killed-in-january-road-crashes-in-bangladesh-rsf/179885,
+2026,3.0,month,Dhaka,accidents,126.0,RSF,https://en.prothomalo.com/bangladesh/3f7xzpme5e,
+2026,3.0,month,Dhaka,deaths,137.0,RSF,https://en.prothomalo.com/bangladesh/3f7xzpme5e,
+2026,6.0,month,Dhaka,accidents,116.0,RSF,https://bdnews24.com/bangladesh/9a8381f35de8,share of accidents
+2026,6.0,month,Mymensingh,accidents,19.0,RSF,https://bdnews24.com/bangladesh/9a8381f35de8,share of accidents
+2026,6.0,month,Dhaka,deaths,118.0,RSF,https://bdnews24.com/bangladesh/9a8381f35de8,share of accidents
+2026,6.0,month,Mymensingh,deaths,16.0,RSF,https://bdnews24.com/bangladesh/9a8381f35de8,share of accidents
+2026,6.0,month,Dhaka,share_pct,24.57,RSF,https://bdnews24.com/bangladesh/9a8381f35de8,share of accidents
+2026,6.0,month,Chattogram,share_pct,23.72,RSF,https://bdnews24.com/bangladesh/9a8381f35de8,share of accidents
+2026,6.0,month,Rajshahi,share_pct,18.43,RSF,https://bdnews24.com/bangladesh/9a8381f35de8,share of accidents
+2026,6.0,month,Rangpur,share_pct,10.16,RSF,https://bdnews24.com/bangladesh/9a8381f35de8,share of accidents
+2026,6.0,month,Khulna,share_pct,8.68,RSF,https://bdnews24.com/bangladesh/9a8381f35de8,share of accidents
+2026,6.0,month,Barishal,share_pct,5.93,RSF,https://bdnews24.com/bangladesh/9a8381f35de8,share of accidents
+2026,6.0,month,Sylhet,share_pct,4.44,RSF,https://bdnews24.com/bangladesh/9a8381f35de8,share of accidents
+2026,6.0,month,Mymensingh,share_pct,4.02,RSF,https://bdnews24.com/bangladesh/9a8381f35de8,share of accidents
+2026,7.0,month,Dhaka,accidents,133.0,RSF,https://unb.com.bd/category/Bangladesh/bangladeshs-roads-remain-deadly-416-killed-in-july-alone/192431,
+2026,7.0,month,Barishal,accidents,28.0,RSF,https://unb.com.bd/category/Bangladesh/bangladeshs-roads-remain-deadly-416-killed-in-july-alone/192431,
+2026,7.0,month,Dhaka,deaths,125.0,RSF,https://unb.com.bd/category/Bangladesh/bangladeshs-roads-remain-deadly-416-killed-in-july-alone/192431,
+2026,7.0,month,Barishal,deaths,24.0,RSF,https://unb.com.bd/category/Bangladesh/bangladeshs-roads-remain-deadly-416-killed-in-july-alone/192431,
+2026,8.0,month,Dhaka,accidents,172.0,RSF,https://bdnews24.com/bangladesh/3fa3811aa635,
+2026,8.0,month,Barishal,accidents,15.0,RSF,https://bdnews24.com/bangladesh/3fa3811aa635,
+2026,8.0,month,Dhaka,deaths,144.0,RSF,https://bdnews24.com/bangladesh/3fa3811aa635,
+2026,8.0,month,Barishal,deaths,14.0,RSF,https://bdnews24.com/bangladesh/3fa3811aa635,
+2026,9.0,month,Dhaka,accidents,132.0,RSF,https://unb.com.bd/category/Bangladesh/14-deaths-a-day-as-423-killed-in-road-crashes-in-september-rsf/196955,
+2026,9.0,month,Sylhet,accidents,20.0,RSF,https://unb.com.bd/category/Bangladesh/14-deaths-a-day-as-423-killed-in-road-crashes-in-september-rsf/196955,
+2026,9.0,month,Dhaka,deaths,134.0,RSF,https://unb.com.bd/category/Bangladesh/14-deaths-a-day-as-423-killed-in-road-crashes-in-september-rsf/196955,
+2026,9.0,month,Sylhet,deaths,21.0,RSF,https://unb.com.bd/category/Bangladesh/14-deaths-a-day-as-423-killed-in-road-crashes-in-september-rsf/196955,

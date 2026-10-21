@@ -1,0 +1,10 @@
+year,festival,days,accidents,deaths,injuries,deaths_per_day,source,source_url
+2021,Eid-ul-Azha,11.0,158.0,207.0,289.0,18.81,RSF,https://thefinancialexpress.com.bd/public/national/road-accidents-kill-207-people-in-11-days-around-eid-ul-azha-1627297498
+2022,Eid-ul-Azha,,,274.0,,,RSF,https://www.dhakatribune.com/bangladesh/384402/report-road-accidents-in-bangladesh-nearly-double
+2023,Eid-ul-Azha,,303.0,324.0,,,RSF,https://www.dhakatribune.com/bangladesh/384402/report-road-accidents-in-bangladesh-nearly-double
+2023,Eid-ul-Fitr,14.0,240.0,285.0,454.0,20.35,RSF,https://www.dhakatribune.com/bangladesh/378096/eid-holiday-turns-deadly-over-249-lives-lost-in
+2024,Eid-ul-Azha,,251.0,262.0,,,RSF,https://www.dhakatribune.com/bangladesh/384402/report-road-accidents-in-bangladesh-nearly-double
+2024,Eid-ul-Fitr,15.0,358.0,367.0,1500.0,24.46,RSF,https://www.dhakatribune.com/bangladesh/378096/eid-holiday-turns-deadly-over-249-lives-lost-in
+2025,Eid-ul-Azha,12.0,347.0,312.0,1057.0,26.0,RSF,https://www.dhakatribune.com/bangladesh/384402/report-road-accidents-in-bangladesh-nearly-double
+2025,Eid-ul-Fitr,11.0,257.0,249.0,553.0,22.63,RSF,https://www.dhakatribune.com/bangladesh/378096/eid-holiday-turns-deadly-over-249-lives-lost-in
+2026,Eid-ul-Azha,13.0,292.0,281.0,837.0,21.61,RSF,https://www.dhakatribune.com/bangladesh/411719/rsf-281-killed-in-road-crashes-during-eid-travel

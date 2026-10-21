@@ -1,0 +1,70 @@
+year,month,month_name,accidents,deaths,injuries,deaths_per_day,deaths_per_accident,reported,source,source_url,note
+2021,1,Jan,427.0,484.0,673.0,15.61,1.13,True,RSF,https://www.dhakatribune.com/bangladesh/237902/road-crashes-kill-484-in-january,
+2021,2,Feb,,,,,,False,RSF,,
+2021,3,Mar,409.0,513.0,598.0,16.55,1.25,True,RSF,https://old.thefinancialexpress.com.bd/national/road-crashes-leave-513-dead-and-598-injured-last-month-report-1617611464,published 2021-04-05
+2021,4,Apr,397.0,452.0,,15.07,1.14,True,RSF,https://thefinancialexpress.com.bd/national/562-killed-549-injured-in-road-accidents-in-may-1622711546,back-reference in May 2021 report
+2021,5,May,441.0,562.0,,18.13,1.27,True,RSF,https://mail.thefinancialexpress.com.bd/national/road-crashes-claim-398-lives-in-june-1625657975?amp=true,back-reference
+2021,6,Jun,327.0,398.0,423.0,13.27,1.22,True,RSF,https://mail.thefinancialexpress.com.bd/national/road-crashes-claim-398-lives-in-june-1625657975?amp=true,
+2021,7,Jul,,,,,,False,RSF,,
+2021,8,Aug,,,,,,False,RSF,,
+2021,9,Sep,,,,,,False,RSF,,
+2021,10,Oct,346.0,407.0,,13.13,1.18,True,RSF,https://thefinancialexpress.com.bd/national/road-crashes-claim-413-lives-in-november-1638623303,back-reference in Nov 2021 report
+2021,11,Nov,379.0,413.0,532.0,13.77,1.09,True,RSF,https://thefinancialexpress.com.bd/national/road-crashes-claim-413-lives-in-november-1638623303,published 2021-12-04
+2021,12,Dec,383.0,418.0,497.0,13.48,1.09,True,RSF,https://www.tbsnews.net/bangladesh/december-sees-418-deaths-road-accidents-351778,published 2022-01-01; RSF says the total includes waterway accidents
+2022,1,Jan,,,,,,False,RSF,,
+2022,2,Feb,,,,,,False,RSF,,
+2022,3,Mar,458.0,589.0,647.0,19.0,1.29,True,RSF,https://en.prothomalo.com/bangladesh/accident/child-death-in-road-accidents-on-the-rise-road-safety-foundation,published 2022-04-05
+2022,4,Apr,427.0,543.0,612.0,18.1,1.27,True,RSF,https://en.prothomalo.com/bangladesh/accident/543-killed-in-427-road-accidents-in-april-rsf,
+2022,5,May,528.0,641.0,1364.0,20.68,1.21,True,RSF,https://today.thefinancialexpress.com.bd/print/641-killed-in-528-crashes-in-may-1654538899,
+2022,6,Jun,467.0,524.0,821.0,17.47,1.12,True,RSF,https://unb.com.bd/category/bangladesh/road-crashes-claim-524-lives-in-june/96260,
+2022,7,Jul,632.0,739.0,2042.0,23.84,1.17,True,RSF,https://unb.com.bd/category/Bangladesh/739-lives-lost-on-roads-in-july-in-bangladesh-rsf/98335,
+2022,8,Aug,458.0,519.0,961.0,16.74,1.13,True,RSF,https://www.tbsnews.net/node/489326,
+2022,9,Sep,407.0,476.0,794.0,15.87,1.17,True,RSF,https://unb.com.bd/category/Bangladesh/476-people-killed-in-407-road-accidents-in-september-road-safety-foundation/101890,
+2022,10,Oct,,,,,,False,RSF,,
+2022,11,Nov,463.0,554.0,747.0,18.47,1.2,True,RSF,https://www.dhakatribune.com/bangladesh/299745/report-554-killed-in-road-accidents-in-november,
+2022,12,Dec,,,,,,False,RSF,,
+2023,1,Jan,,,,,,False,RSF,,
+2023,2,Feb,439.0,487.0,712.0,17.39,1.11,True,RSF,https://unb.com.bd/category/Bangladesh/487-deaths-in-439-road-accidents-in-feb-road-safety-foundation/111468,
+2023,3,Mar,486.0,564.0,1097.0,18.19,1.16,True,RSF,https://www.dhakatribune.com/bangladesh/308345/report-564-people-lost-lives-in-486-road,
+2023,4,Apr,,,,,,False,RSF,,
+2023,5,May,491.0,408.0,631.0,13.16,0.83,True,RSF,https://www.tbsnews.net/node/646738,year not stated in article; node id 646738 suggests ~2023 publication; treat with caution
+2023,6,Jun,559.0,516.0,812.0,17.2,0.92,True,RSF,https://unb.com.bd/category/Bangladesh/516-deaths-in-559-road-accidents-in-june-road-safety-foundation/118647,
+2023,7,Jul,511.0,573.0,1126.0,18.48,1.12,True,RSF,https://www.tbsnews.net/node/678302,"Dhaka Tribune gives 1,256 injured"
+2023,8,Aug,403.0,378.0,,12.19,0.94,True,RSF,https://www.dhakatribune.com/bangladesh/327393/report-394-lives-lost-on-roads-across-bangladesh,back-reference
+2023,9,Sep,398.0,394.0,,13.13,0.99,True,RSF,https://www.dhakatribune.com/bangladesh/327393/report-394-lives-lost-on-roads-across-bangladesh,
+2023,10,Oct,458.0,421.0,,13.58,0.92,True,RSF,https://unb.com.bd/category/Bangladesh/467-lives-lost-on-roads-across-country-in-nov-road-safety-foundation/127181,back-reference
+2023,11,Nov,541.0,467.0,672.0,15.57,0.86,True,RSF,https://unb.com.bd/category/Bangladesh/467-lives-lost-on-roads-across-country-in-nov-road-safety-foundation/127181,
+2023,12,Dec,517.0,512.0,793.0,16.52,0.99,True,RSF,https://www.dhakatribune.com/bangladesh/335789/report-512-killed-in-december-road-accidents,
+2024,1,Jan,,,,,,False,RSF,,
+2024,2,Feb,583.0,544.0,867.0,18.76,0.93,True,RSF,https://observerbd.com/news.php?id=464297,
+2024,3,Mar,,573.0,,18.48,,True,RSF,https://today.thefinancialexpress.com.bd/print/679-killed-934-injured-rsf-1715531825,back-reference
+2024,4,Apr,,679.0,934.0,22.63,,True,RSF,https://today.thefinancialexpress.com.bd/print/679-killed-934-injured-rsf-1715531825,
+2024,5,May,,,,,,False,RSF,,
+2024,6,Jun,,,,,,False,RSF,,
+2024,7,Jul,,,,,,False,RSF,,
+2024,8,Aug,,,,,,False,RSF,,
+2024,9,Sep,392.0,426.0,813.0,14.2,1.09,True,RSF,https://www.dhakatribune.com/bangladesh/361057/426-lives-lost-on-the-roads-in-september,
+2024,10,Oct,443.0,469.0,837.0,15.13,1.06,True,RSF,https://en.ittefaq.com.bd/9582/469-dead-837-injured-in-oct-road-crashes-in,
+2024,11,Nov,,,,,,False,RSF,,
+2024,12,Dec,,,,,,False,RSF,,
+2025,1,Jan,621.0,608.0,1100.0,19.61,0.98,True,RSF,https://thefinancialexpress.com.bd/national/bd-sees-621-road-accidents-in-jan-608-people-killed,
+2025,2,Feb,596.0,578.0,1327.0,20.64,0.97,True,RSF,https://www.dhakatribune.com/bangladesh/375738/road-accident-596-crashes-claim-578-lives-in-last,
+2025,3,Mar,587.0,604.0,1231.0,19.48,1.03,True,RSF,https://www.dhakatribune.com/bangladesh/378488/road-crashes-claim-604-lives-in-march,
+2025,4,Apr,593.0,588.0,1124.0,19.6,0.99,True,RSF,https://www.dhakatribune.com/bangladesh/380943/588-killed-1-124-injured-in-road-accidents-in,
+2025,5,May,,,,,,False,RSF,,
+2025,6,Jun,689.0,696.0,1867.0,23.2,1.01,True,RSF,https://tds-images.thedailystar.net/news/bangladesh/accidents-fires/news/696-killed-road-accidents-june-3930696,year inferred from TBS tag '37% increase in fatalities in June compared to May' (2024)
+2025,7,Jul,443.0,418.0,856.0,13.48,0.94,True,RSF,https://www.dhakatribune.com/bangladesh/389368/rsf-report-47-students-among-418-killed-in-road,
+2025,8,Aug,451.0,428.0,791.0,13.81,0.95,True,RSF,https://en.prothomalo.com/bangladesh/accident/92uxvdz8dp,
+2025,9,Sep,446.0,417.0,682.0,13.9,0.93,True,RSF,https://www.dhakatribune.com/bangladesh/393162/rsf-417-lives-lost-on-roads-in-september-in,
+2025,10,Oct,486.0,441.0,1128.0,14.23,0.91,True,RSF,https://unb.com.bd/category/Bangladesh/bangladesh-sees-rise-in-road-accidents-deaths-in-october-rsf/173371,
+2025,11,Nov,534.0,483.0,1317.0,16.1,0.9,True,RSF,https://www.dhakatribune.com/bangladesh/399002/rsf-bangladesh-sees-rise-in-road-accidents,
+2025,12,Dec,547.0,503.0,1186.0,16.23,0.92,True,RSF,https://en.prothomalo.com/bangladesh/5adgycvhw6,
+2026,1,Jan,559.0,487.0,1194.0,15.71,0.87,True,RSF,https://unb.com.bd/category/bangladesh/57-children-among-487-killed-in-january-road-crashes-in-bangladesh-rsf/179885,"2026, outside requested scope"
+2026,2,Feb,,,,,,False,RSF,,
+2026,3,Mar,576.0,532.0,2221.0,17.16,0.92,True,RSF,https://en.prothomalo.com/bangladesh/3f7xzpme5e,injury count as reported; unusually high
+2026,4,Apr,463.0,404.0,709.0,13.47,0.87,True,RSF,https://bdnews24.com/bangladesh/b2131eb8a841,"2026, outside requested scope"
+2026,5,May,,,,,,False,RSF,,
+2026,6,Jun,472.0,438.0,561.0,14.6,0.93,True,RSF,https://bdnews24.com/bangladesh/9a8381f35de8,"2026, outside requested scope; bdnews24 body says 428"
+2026,7,Jul,458.0,416.0,629.0,13.42,0.91,True,RSF,https://unb.com.bd/category/Bangladesh/bangladeshs-roads-remain-deadly-416-killed-in-july-alone/192431,"2026, outside requested scope"
+2026,8,Aug,513.0,481.0,664.0,15.52,0.94,True,RSF,https://bdnews24.com/bangladesh/3fa3811aa635,"2026, outside requested scope"
+2026,9,Sep,442.0,423.0,674.0,14.1,0.96,True,RSF,https://unb.com.bd/category/Bangladesh/14-deaths-a-day-as-423-killed-in-road-crashes-in-september-rsf/196955,"2026, outside requested scope"
