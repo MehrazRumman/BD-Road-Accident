@@ -85,11 +85,14 @@ BD-Road-Accident/
 
 - Road deaths rose from **6,284 (2021) to 7,359 (2025)**, about 20 a day. 2026 is running about 15% lower than
   2025 for the same months.
-- **Motorcycles account for 35–40% of all road deaths** every year. Three-wheelers come second.
-- Accidents broadly follow population across divisions. **Dhaka** has the most, and **Rajshahi** has more than its
-  population share would suggest.
-- Deaths per day are **highest from January to July** and lowest from August to October. **Eid travel** windows
-  have 26–51% more deaths per day than normal.
+- The official BRTA count is about **87–90% of RSF's** for the same months in 2023–2025. In August 2024, the
+  month of the political transition, BRTA recorded only 231 deaths, which points to a reporting gap.
+- **Motorcycles account for 35–40% of all road deaths** every year (RSF), and come first in the BRTA data too
+  (about 32%). Three-wheelers come second in both.
+- **Dhaka division** records the most deaths, but **per person the risk is highest in Rajshahi, Khulna and Rangpur**
+  (3.6–3.9 deaths per 100,000 people a year, against 2.9 for Dhaka; BRTA 2023–2025).
+- Deaths per day are **highest from January to June** and **lowest from August to October**; both sources agree on
+  the late-monsoon low. **Eid travel** windows have 26–51% more deaths per day than normal.
 
 ## Charts
 
@@ -122,6 +125,16 @@ BD-Road-Accident/
 | ![Seasonal index](figures/09_seasonal_index.png) | ![Eid travel deaths](figures/10_eid.png) |
 
 ![Time of day](figures/11_time_of_day.png)
+
+### Official data (BRTA)
+
+![BRTA vs RSF monthly deaths](figures/12_brta_vs_rsf.png)
+
+| | |
+|---|---|
+| ![Deaths per 100,000 by division](figures/13_division_rate.png) | ![BRTA deaths by vehicle](figures/14_brta_vehicle.png) |
+
+![Seasonal index, both sources](figures/15_seasonal_both.png)
 
 ## Limitations
 
