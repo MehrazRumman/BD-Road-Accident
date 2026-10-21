@@ -33,16 +33,41 @@
     font-size: 15px;
     line-height: 1.5;
   }
-  header { max-width: 1280px; margin: 0 auto; padding: 24px 16px 8px; }
-  header h1 { margin: 0; font-size: clamp(22px, 3vw, 30px); font-weight: 700; letter-spacing: -0.01em; }
-  header p { margin: 4px 0 0; color: var(--ink-2); }
+  .hero {
+    background: radial-gradient(120% 140% at 0% 0%, #1c5cab 0%, #0d366b 55%, #0a2547 100%);
+    color: #fff;
+  }
+  header { max-width: 1280px; margin: 0 auto; padding: 28px 16px 26px; display: grid; gap: 16px; }
+  header .eyebrow { font-size: 13px; letter-spacing: .02em; color: #b7d3f6; font-weight: 500; }
+  header h1 { margin: 2px 0 0; font-size: clamp(24px, 3.4vw, 36px); font-weight: 700; letter-spacing: -0.01em; line-height: 1.25; }
+  header p { margin: 6px 0 0; color: #cde2fb; max-width: 760px; }
+  .stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+  .stat {
+    background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.14); border-radius: 12px;
+    padding: 10px 12px; backdrop-filter: blur(2px);
+  }
+  .stat .v { font-size: clamp(20px, 2.6vw, 28px); font-weight: 700; line-height: 1.2; }
+  .stat .k { font-size: 12.5px; color: #cde2fb; }
+  @media (max-width: 640px) { .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 
   .layout {
     max-width: 1280px; margin: 0 auto; padding: 12px 16px 24px;
     display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(330px, 1fr); gap: 16px; align-items: start;
   }
   .stack { display: grid; gap: 16px; min-width: 0; }
-  .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px; min-width: 0; }
+  .card {
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px; min-width: 0;
+    box-shadow: 0 1px 2px rgba(11,11,11,.04), 0 6px 20px rgba(11,11,11,.04);
+  }
+  .map-caption {
+    position: absolute; top: 12px; left: 56px; right: 12px; z-index: 500; pointer-events: none;
+    display: flex; flex-wrap: wrap; gap: 6px; align-items: center;
+  }
+  .map-caption span {
+    background: rgba(252,252,251,.95); border: 1px solid var(--line); border-radius: 999px;
+    padding: 4px 10px; font-size: 13px; color: var(--ink-2); box-shadow: 0 1px 3px rgba(0,0,0,.06);
+  }
+  .map-caption b { color: var(--ink); font-weight: 600; }
   .card h2 { margin: 0 0 10px; font-size: 16px; font-weight: 600; }
   .sub { font-size: 13px; color: var(--muted); margin: -6px 0 10px; }
 
@@ -106,8 +131,20 @@
   .seg button[aria-pressed="true"] { background: var(--brta); border-color: var(--brta); color: #fff; font-weight: 600; }
 
   .spots-row { display: grid; gap: 8px; border-top: 1px solid var(--line); padding-top: 12px; }
-  .toggle { display: flex; align-items: center; gap: 8px; font-weight: 500; cursor: pointer; }
-  .toggle input { width: 18px; height: 18px; accent-color: var(--rsf); }
+  .toggle { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-weight: 500; cursor: pointer; }
+  .toggle input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+  .toggle .switch {
+    flex: none; width: 40px; height: 22px; border-radius: 999px; background: #c3c2b7; position: relative; transition: background .15s;
+  }
+  .toggle .switch::after {
+    content: ""; position: absolute; top: 3px; left: 3px; width: 16px; height: 16px; border-radius: 50%;
+    background: #fff; box-shadow: 0 1px 2px rgba(0,0,0,.2); transition: transform .15s;
+  }
+  .toggle input:checked + .switch { background: var(--rsf); }
+  .toggle input:checked + .switch::after { transform: translateX(18px); }
+  .toggle input:focus-visible + .switch { outline: 2px solid var(--brta); outline-offset: 2px; }
+  .toggle .dotkey { display: inline-flex; align-items: center; gap: 8px; }
+  .toggle .dotkey i { width: 10px; height: 10px; border-radius: 50%; background: var(--rsf); }
   .legend .spot-key { display: grid; gap: 3px; margin-top: 8px; padding-top: 6px; border-top: 1px solid var(--line); }
   .legend .spot-key span { display: flex; align-items: center; gap: 6px; }
   .legend .spot-key i { width: 10px; height: 10px; border-radius: 50%; border: 2px solid #eb6834; display: inline-block; }
@@ -116,15 +153,17 @@
   .leaflet-popup-content .meta { color: var(--ink-2); }
 
   /* Totals */
-  .totals { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
-  .totals th { font-size: 13px; color: var(--ink-2); font-weight: 500; text-align: right; padding: 0 0 6px; }
-  .totals th:first-child { text-align: left; }
-  .totals td { padding: 8px 0; border-top: 1px solid var(--line); text-align: right; font-size: clamp(17px, 1.8vw, 21px); font-weight: 700; }
-  .totals td:first-child { text-align: left; font-size: 13px; font-weight: 500; color: var(--ink-2); }
-  .totals .src { display: flex; align-items: center; gap: 6px; }
-  .totals .dot { width: 10px; height: 10px; border-radius: 50%; flex: none; }
-  .totals .note { display: block; font-size: 12px; color: var(--muted); font-weight: 400; }
-  .totals .na { color: var(--muted); font-weight: 500; font-size: 14px; }
+  .totals { display: grid; gap: 12px; }
+  .src-block { display: grid; gap: 6px; }
+  .src-block + .src-block { border-top: 1px solid var(--line); padding-top: 12px; }
+  .src-head { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 8px; font-weight: 600; font-size: 14px; }
+  .src-head .dot { width: 10px; height: 10px; border-radius: 50%; flex: none; align-self: center; }
+  .src-head .note { font-size: 12px; color: var(--muted); font-weight: 400; }
+  .trio { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+  .trio div { background: #f6f6f3; border-radius: 10px; padding: 8px 10px; }
+  .trio small { display: block; font-size: 12px; color: var(--ink-2); }
+  .trio b { font-size: clamp(17px, 1.7vw, 21px); font-variant-numeric: tabular-nums; }
+  .trio .na { color: var(--muted); font-weight: 500; font-size: 14px; }
 
   /* Bars */
   .bars { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
@@ -161,15 +200,22 @@
 </style>
 </head>
 <body>
+<div class="hero">
 <header>
-  <h1>বাংলাদেশ সড়ক দুর্ঘটনা মানচিত্র</h1>
-  <p>বিভাগভিত্তিক সড়ক দুর্ঘটনা, নিহত ও আহত · বিআরটিএ (২০২৩–২০২৬) ও রোড সেফটি ফাউন্ডেশন (২০২১–২০২৬)</p>
+  <div>
+    <div class="eyebrow">ইন্টারঅ্যাক্টিভ মানচিত্র · ২০২১–২০২৬</div>
+    <h1>বাংলাদেশ সড়ক দুর্ঘটনা মানচিত্র</h1>
+    <p>কোন বিভাগে কত দুর্ঘটনা, কতজন নিহত ও আহত, আর জাতীয় মহাসড়কের কোথায় দুর্ঘটনার ঝুঁকি বেশি। বছর, মাস ও মহাসড়ক বেছে নিয়ে দেখুন।</p>
+  </div>
+  <div class="stats" id="hero-stats"></div>
 </header>
+</div>
 
 <main class="layout">
   <div class="stack">
     <section class="card map-card" aria-label="মানচিত্র">
       <div id="map"></div>
+      <div class="map-caption" id="map-caption" aria-live="polite"></div>
       <div class="legend" id="legend" aria-hidden="true"></div>
       <div class="nodata" id="nodata"><div><b>এই সময়ের বিভাগভিত্তিক তথ্য নেই</b>বিআরটিএ-র মাসিক বিভাগভিত্তিক প্রতিবেদন ২০২৩ সাল থেকে। এই সময়ের জাতীয় হিসাব (রোড সেফটি ফাউন্ডেশন) ডান পাশে দেখুন।</div></div>
     </section>
@@ -179,6 +225,12 @@
       <div class="keys" id="keys"></div>
       <svg id="trend" role="img" aria-label="মাসভিত্তিক প্রবণতা"></svg>
       <div class="readout" id="readout">চার্টের উপর মাউস রাখুন। কমলা ছায়া = বাছাই করা সময়।</div>
+    </section>
+
+    <section class="card">
+      <h2>যানবাহনভিত্তিক নিহত</h2>
+      <div class="sub">সূত্র: বিআরটিএ, সারা দেশ · পথচারীরা যে যানবাহনের ধাক্কায় নিহত, সেই যানবাহনের হিসাবে</div>
+      <ul class="bars" id="vehicles"></ul>
     </section>
   </div>
 
@@ -196,7 +248,8 @@
         <button type="button" data-m="rate" aria-pressed="false">প্রতি ১০ লাখে নিহত</button>
       </div>
       <div class="spots-row">
-        <label class="toggle"><input type="checkbox" id="spots-on" checked> দুর্ঘটনাপ্রবণ স্থান দেখাও</label>
+        <label class="toggle"><span class="dotkey"><i></i>দুর্ঘটনাপ্রবণ স্থান দেখাও</span>
+          <input type="checkbox" id="spots-on" checked><span class="switch" aria-hidden="true"></span></label>
         <label class="field">মহাসড়ক <select id="highway"></select></label>
         <div class="sub" id="spots-count" style="margin:0"></div>
       </div>
@@ -205,7 +258,7 @@
     <div class="card">
       <h2>সারা দেশে মোট</h2>
       <div class="sub" id="period"></div>
-      <table class="totals" id="totals"></table>
+      <div class="totals" id="totals"></div>
     </div>
 
     <div class="card">
@@ -214,11 +267,6 @@
       <ol class="bars" id="rank"></ol>
     </div>
 
-    <div class="card">
-      <h2>যানবাহনভিত্তিক নিহত</h2>
-      <div class="sub">সূত্র: বিআরটিএ, সারা দেশ · পথচারীরা যে যানবাহনের ধাক্কায় নিহত, সেই যানবাহনের হিসাবে</div>
-      <ul class="bars" id="vehicles"></ul>
-    </div>
   </aside>
 </main>
 
@@ -246,9 +294,10 @@
     "Bus": "বাস/মিনিবাস", "Car / microbus": "কার/মাইক্রোবাস", "Van / other": "ভ্যান/অন্যান্য",
   };
   const RAMP = ["#cde2fb", "#86b6ef", "#3987e5", "#1c5cab", "#0d366b"];
+  // Label positions (lat, lng), placed inside each division and away from the busiest highway corridors.
   const LABEL_AT = {
-    Dhaka: [23.85, 90.05], Chattogram: [22.75, 91.85], Rajshahi: [24.5, 88.95], Khulna: [22.9, 89.3],
-    Barishal: [22.45, 90.3], Sylhet: [24.6, 91.75], Rangpur: [25.75, 89.15], Mymensingh: [24.85, 90.45],
+    Dhaka: [23.55, 89.95], Chattogram: [22.3, 92.2], Rajshahi: [24.75, 88.65], Khulna: [22.55, 89.35],
+    Barishal: [22.2, 90.45], Sylhet: [24.4, 91.95], Rangpur: [25.95, 88.85], Mymensingh: [24.95, 90.15],
   };
   const FIRST = { y: 2021, m: 1 }, LAST = { y: 2026, m: 9 };
 
@@ -380,8 +429,10 @@
   }).addTo(map);
   map.fitBounds(layer.getBounds(), { padding: [12, 12] });
   map.setMaxBounds(layer.getBounds().pad(0.6));
+  map.createPane("labels").style.zIndex = 700;
+  map.getPane("labels").style.pointerEvents = "none";
   const labels = Object.fromEntries(DIVISIONS.map(d => [d, L.marker(LABEL_AT[d], {
-    interactive: false, icon: L.divIcon({ className: "label-icon", html: "", iconSize: [0, 0] }),
+    pane: "labels", interactive: false, icon: L.divIcon({ className: "label-icon", html: "", iconSize: [0, 0] }),
   }).addTo(map)]));
 
   // ---------- Accident-prone spots ----------
@@ -395,7 +446,7 @@
   const spotLayer = L.layerGroup().addTo(map);
   const spotMarkers = spotData.spots.map(s => {
     const mk = L.circleMarker([s.lat, s.lng], {
-      pane: "spots", radius: s.exact ? 5.5 : 5, weight: 2, color: "#eb6834",
+      pane: "spots", radius: s.exact ? 4.5 : 4, weight: 1.75, color: "#eb6834",
       fillColor: s.exact ? "#eb6834" : "#ffffff", fillOpacity: 1,
     });
     const head = `<b>${esc(s.place)}</b><div class="meta">জেলা: ${s.district} · মহাসড়ক ${s.highway}: ${HW[s.highway]}</div>`;
@@ -417,6 +468,7 @@
       ? `${bn(shown.length)}টি স্থান · জাতীয় মহাসড়কের দুর্ঘটনাপ্রবণ স্থানের তালিকা (সওজ, হাইওয়ে পুলিশ, এআরআই-বুয়েট, আরএসএফ)`
       : "";
     renderLegend();
+    renderCaption();
   }
   document.getElementById("spots-on").addEventListener("change", renderSpots);
   highwaySel.addEventListener("change", renderSpots);
@@ -447,14 +499,18 @@
       accidents: t.accidents + current.agg[d].accidents, deaths: t.deaths + current.agg[d].deaths,
       injuries: t.injuries + current.agg[d].injuries,
     }), { accidents: 0, deaths: 0, injuries: 0 }) : null;
-    const cell = (o, k) => o && o[k] != null ? bn(o[k]) + (o.partial && o.partial[k] ? "*" : "") : `<span class="na">তথ্য নেই</span>`;
-    const brtaNote = b ? `${bn(current.nMonths)} মাসিক প্রতিবেদন` : "২০২৩ সাল থেকে";
+    const cell = (o, k) => o && o[k] != null
+      ? `<b>${bn(o[k])}${o.partial && o.partial[k] ? "*" : ""}</b>` : `<span class="na">তথ্য নেই</span>`;
+    const trio = o => `<div class="trio">
+        <div><small>দুর্ঘটনা</small>${cell(o, "accidents")}</div>
+        <div><small>নিহত</small>${cell(o, "deaths")}</div>
+        <div><small>আহত</small>${cell(o, "injuries")}</div></div>`;
+    const brtaNote = b ? `${bn(current.nMonths)} মাসিক প্রতিবেদন` : "মাসিক প্রতিবেদন ২০২৩ সাল থেকে";
     document.getElementById("totals").innerHTML = `
-      <tr><th></th><th>দুর্ঘটনা</th><th>নিহত</th><th>আহত</th></tr>
-      <tr><td><span class="src"><i class="dot" style="background:var(--brta)"></i>বিআরটিএ (সরকারি)</span><span class="note">${brtaNote}</span></td>
-          <td>${cell(b, "accidents")}</td><td>${cell(b, "deaths")}</td><td>${cell(b, "injuries")}</td></tr>
-      <tr><td><span class="src"><i class="dot" style="background:var(--rsf)"></i>রোড সেফটি ফাউন্ডেশন</span><span class="note">${r ? r.note : "এই সময়ের প্রতিবেদন পাওয়া যায়নি"}</span></td>
-          <td>${cell(r, "accidents")}</td><td>${cell(r, "deaths")}</td><td>${cell(r, "injuries")}</td></tr>`;
+      <div class="src-block"><div class="src-head"><i class="dot" style="background:var(--brta)"></i>বিআরটিএ (সরকারি)
+        <span class="note">${brtaNote}</span></div>${trio(b)}</div>
+      <div class="src-block"><div class="src-head"><i class="dot" style="background:var(--rsf)"></i>রোড সেফটি ফাউন্ডেশন (সংবাদভিত্তিক)
+        <span class="note">${r ? r.note : "এই সময়ের প্রতিবেদন পাওয়া যায়নি"}</span></div>${trio(r)}</div>`;
     document.getElementById("period").textContent = periodText();
   }
   function renderRank() {
@@ -548,8 +604,24 @@
       className: "label-icon", iconSize: [0, 0],
       html: `<div class="div-label">${nameBn[d]}${hasData ? `<span>${fmt(agg[d][state.measure], state.measure)}</span>` : ""}</div>`,
     })));
-    renderLegend(); renderTotals(); renderRank(); renderVehicles(); renderTrend();
+    renderLegend(); renderTotals(); renderRank(); renderVehicles(); renderTrend(); renderCaption();
   }
+  function renderCaption() {
+    const spotsOn = document.getElementById("spots-on").checked;
+    const hw = highwaySel.value;
+    document.getElementById("map-caption").innerHTML =
+      `<span>রং: <b>${MEASURES[state.measure]}</b></span><span>${periodText()}</span>` +
+      (spotsOn ? `<span>বিন্দু: <b>${hw === "all" ? "সব মহাসড়ক" : `${hw} ${HW[hw]}`}</b></span>` : "");
+  }
+  // Headline figures: the latest full year from each source.
+  const lastRsf = rsfAnnual[Math.max(...Object.keys(rsfAnnual).map(Number))];
+  const brta2025 = brta.filter(r => r.year === 2025).reduce((s, r) => s + r.deaths, 0);
+  document.getElementById("hero-stats").innerHTML = [
+    [bn(lastRsf.deaths), `${bnYear(lastRsf.year)} সালে নিহত (রোড সেফটি ফাউন্ডেশন)`],
+    [bn(Math.round(lastRsf.deaths / 365)), "গড়ে প্রতিদিন নিহত"],
+    [bn(brta2025), "২০২৫ সালে নিহত (বিআরটিএ, সরকারি)"],
+    [bn(spotData.spots.length), "জাতীয় মহাসড়কে দুর্ঘটনাপ্রবণ স্থান"],
+  ].map(([v, k]) => `<div class="stat"><div class="v">${v}</div><div class="k">${k}</div></div>`).join("");
   function select(d) {
     state.selected = state.selected === d ? null : d;
     render();
