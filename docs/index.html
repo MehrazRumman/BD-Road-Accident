@@ -225,7 +225,7 @@
 <div class="hero">
 <header>
   <div>
-    <div class="eyebrow">ইন্টারঅ্যাক্টিভ মানচিত্র · ২০২১–২০২৬</div>
+    <div class="eyebrow">ইন্টারঅ্যাক্টিভ মানচিত্র · ২০২১–২০২৬<span id="views" hidden></span></div>
     <h1 class="brand"><img src="logo.svg" alt="" width="48" height="48">বাংলাদেশ সড়ক দুর্ঘটনা মানচিত্র</h1>
     <p>কোন বিভাগে কত দুর্ঘটনা, কতজন নিহত ও আহত, আর জাতীয় মহাসড়কের কোথায় দুর্ঘটনার ঝুঁকি বেশি। বছর, মাস ও মহাসড়ক বেছে নিয়ে দেখুন।</p>
   </div>
@@ -704,5 +704,17 @@
 </script>
 <!-- Page view counter (GoatCounter: no cookies, no personal data) -->
 <script data-goatcounter="https://mehrazrumman.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+<script>
+  // Total views of this page from GoatCounter's public counter; stays hidden if it can't be reached.
+  fetch(`https://mehrazrumman.goatcounter.com/counter/${encodeURIComponent(location.pathname)}.json`)
+    .then(r => r.ok ? r.json() : Promise.reject(r.status))
+    .then(d => {
+      const n = Number(String(d.count).replace(/\D/g, ""));
+      const el = document.getElementById("views");
+      el.textContent = ` · মোট দেখা হয়েছে ${n.toLocaleString("bn-BD")} বার`;
+      el.hidden = false;
+    })
+    .catch(() => {});
+</script>
 </body>
 </html>
