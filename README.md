@@ -8,6 +8,11 @@ sources, Road Safety Foundation figures published in the press and the road tran
 monthly reports. It cleans them into source-linked tables and analyses deaths by year, vehicle type, division and
 time of year in Jupyter notebooks.
 
+**🗺️ Interactive map (Bangla): [mehrazrumman.github.io/BD-Road-Accident](https://mehrazrumman.github.io/BD-Road-Accident/)**.
+It shows accidents, deaths and injuries by division (BRTA, 2023–2026) with year and month filters, the 215
+accident-prone spots on the national highways, a monthly trend from both sources, and deaths by vehicle type. The page
+is built from this repository's data by `scripts/build_map_data.py` and lives in `docs/`.
+
 | 2025 at a glance | |
 |---|---|
 | Road deaths | **7,359** (about 20 a day) |
@@ -69,6 +74,8 @@ BD-Road-Accident/
 ├── notebooks/
 │   ├── 01_data_cleaning.ipynb
 │   └── 02_analysis.ipynb
+├── docs/                     # interactive Bangla map (GitHub Pages)
+├── scripts/                  # build_map_data.py: builds the map data from data/processed
 ├── figures/                  # charts saved by 02_analysis.ipynb
 └── requirements.txt
 ```
