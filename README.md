@@ -10,8 +10,11 @@ time of year in Jupyter notebooks.
 
 **🗺️ Interactive map (Bangla): [mehrazrumman.github.io/BD-Road-Accident](https://mehrazrumman.github.io/BD-Road-Accident/)**.
 It shows accidents, deaths and injuries by division (BRTA, 2023–2026) with year and month filters, the 215
-accident-prone spots on the national highways, a monthly trend from both sources, and deaths by vehicle type. The page
+accident-prone spots on the national highways, a monthly trend from both sources, and deaths by vehicle type.
+The filters are kept in the address, so a view can be shared as a link. The page
 is built from this repository's data by `scripts/build_map_data.py` and lives in `docs/`.
+
+[![The interactive map](figures/00_map.png)](https://mehrazrumman.github.io/BD-Road-Accident/)
 
 | 2025 at a glance | |
 |---|---|
