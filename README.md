@@ -41,6 +41,23 @@ Every row in `data/processed/` has a `source` and a `source_url` column pointing
 | `time_of_day.csv` | Share of accidents by time of day |
 | `eid_periods.csv` | Accidents and deaths during Eid travel windows |
 
+## Project structure
+
+```
+BD-Road-Accident/
+├── data/
+│   ├── raw/                  # source data as collected (never edited by hand after download)
+│   │   ├── deadly_roads/     # RSF figures from the Deadly Roads project, with citations
+│   │   ├── rsf_manual_additions.csv
+│   │   └── division_population_2022.csv
+│   └── processed/            # clean tables written by 01_data_cleaning.ipynb
+├── notebooks/
+│   ├── 01_data_cleaning.ipynb
+│   └── 02_analysis.ipynb
+├── figures/                  # charts saved by 02_analysis.ipynb
+└── requirements.txt
+```
+
 ## Notebooks
 
 1. [`notebooks/01_data_cleaning.ipynb`](notebooks/01_data_cleaning.ipynb): loads the raw files, fixes wrong
