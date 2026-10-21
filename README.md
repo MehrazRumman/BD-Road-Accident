@@ -126,3 +126,14 @@ jupyter notebook notebooks/
 ```
 
 Run `01_data_cleaning.ipynb` first, then `02_analysis.ipynb`.
+
+## Credits
+
+- **Road Safety Foundation (RSF)**, Bangladesh, for the monthly and annual road accident reports all figures come
+  from.
+- **[Deadly Roads: Bangladesh 2000–2025](https://github.com/ahasan722/bangladesh-road-crashes-2000-2025)** by
+  ahasan722, for the transcribed RSF data in `data/raw/deadly_roads/`, used under
+  [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+- **Bangladesh Bureau of Statistics**, Population and Housing Census 2022, for division populations.
+- The newspapers whose reports are cited row by row in the data: The Financial Express, Dhaka Tribune, Prothom Alo,
+  The Business Standard, The Daily Star, UNB, bdnews24 and others.
