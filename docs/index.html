@@ -211,6 +211,7 @@
   .foot { background: #073d22; color: #c9ecd8; margin-top: 8px; }
   footer { max-width: 1280px; margin: 0 auto; padding: 20px 16px 28px; font-size: 13px; }
   footer a { color: #fff; }
+  footer .views { margin: 12px 0 0; padding-top: 12px; border-top: 1px solid rgba(255,255,255,.15); color: #fff; font-weight: 500; }
 
   @media (max-width: 960px) {
     .layout { grid-template-columns: 1fr; }
@@ -225,7 +226,7 @@
 <div class="hero">
 <header>
   <div>
-    <div class="eyebrow">ইন্টারঅ্যাক্টিভ মানচিত্র · ২০২১–২০২৬<span id="views" hidden></span></div>
+    <div class="eyebrow">ইন্টারঅ্যাক্টিভ মানচিত্র · ২০২১–২০২৬</div>
     <h1 class="brand"><img src="logo.svg" alt="" width="48" height="48">বাংলাদেশ সড়ক দুর্ঘটনা মানচিত্র</h1>
     <p>কোন বিভাগে কত দুর্ঘটনা, কতজন নিহত ও আহত, আর জাতীয় মহাসড়কের কোথায় দুর্ঘটনার ঝুঁকি বেশি। বছর, মাস ও মহাসড়ক বেছে নিয়ে দেখুন।</p>
   </div>
@@ -303,6 +304,7 @@
     জনসংখ্যা: জনশুমারি ২০২২। বিভাগের সীমানা: geoBoundaries (CC BY 4.0)।
     <a href="https://github.com/MehrazRumman/BD-Road-Accident" target="_blank" rel="noopener">ডেটা ও বিশ্লেষণ (GitHub)</a>
   </p>
+  <p class="views" id="views" hidden></p>
 </footer>
 </div>
 
@@ -705,13 +707,13 @@
 <!-- Page view counter (GoatCounter: no cookies, no personal data) -->
 <script data-goatcounter="https://mehrazrumman.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 <script>
-  // Total views of this page from GoatCounter's public counter; stays hidden if it can't be reached.
+  // Visitors and total views of this page from GoatCounter's public counter; stays hidden if it can't be reached.
   fetch(`https://mehrazrumman.goatcounter.com/counter/${encodeURIComponent(location.pathname)}.json`)
     .then(r => r.ok ? r.json() : Promise.reject(r.status))
     .then(d => {
-      const n = Number(String(d.count).replace(/\D/g, ""));
+      const num = v => Number(String(v).replace(/\D/g, "")).toLocaleString("bn-BD");
       const el = document.getElementById("views");
-      el.textContent = ` · মোট দেখা হয়েছে ${n.toLocaleString("bn-BD")} বার`;
+      el.textContent = `👁 এই পাতাটি দেখেছেন ${num(d.count_unique)} জন · মোট দেখা হয়েছে ${num(d.count)} বার`;
       el.hidden = false;
     })
     .catch(() => {});
