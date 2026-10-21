@@ -71,8 +71,50 @@ def build_accidents():
     return len(div)
 
 
+HIGHWAY_BN = {
+    "N1": "ঢাকা–চট্টগ্রাম–কক্সবাজার", "N2": "ঢাকা–সিলেট–তামাবিল", "N3": "ঢাকা–ময়মনসিংহ",
+    "N4": "জয়দেবপুর–টাঙ্গাইল–জামালপুর", "N405": "এলেঙ্গা–বঙ্গবন্ধু সেতু", "N5": "ঢাকা–আরিচা–রংপুর–বাংলাবান্ধা",
+    "N6": "কাশিনাথপুর–রাজশাহী–সোনামসজিদ", "N7": "দৌলতদিয়া–খুলনা–মোংলা", "N8": "ঢাকা–মাওয়া–বরিশাল–পটুয়াখালী",
+    "N805": "ভাঙ্গা–গোপালগঞ্জ–খুলনা",
+}
+DISTRICT_BN = {
+    "Bagerhat": "বাগেরহাট", "Barishal": "বরিশাল", "Bogura": "বগুড়া", "Brahmanbaria": "ব্রাহ্মণবাড়িয়া",
+    "Chandpur": "চাঁদপুর", "Chattogram": "চট্টগ্রাম", "Chuadanga": "চুয়াডাঙ্গা", "Cox's Bazar": "কক্সবাজার",
+    "Cumilla": "কুমিল্লা", "Dhaka": "ঢাকা", "Dhaka / Manikganj": "ঢাকা/মানিকগঞ্জ", "Dinajpur": "দিনাজপুর",
+    "Faridpur": "ফরিদপুর", "Gaibandha": "গাইবান্ধা", "Gazipur": "গাজীপুর", "Gopalganj": "গোপালগঞ্জ",
+    "Habiganj": "হবিগঞ্জ", "Jashore": "যশোর", "Jhenaidah": "ঝিনাইদহ", "Khulna": "খুলনা",
+    "Kishoreganj": "কিশোরগঞ্জ", "Madaripur": "মাদারীপুর", "Magura": "মাগুরা", "Manikganj": "মানিকগঞ্জ",
+    "Munshiganj": "মুন্সীগঞ্জ", "Mymensingh": "ময়মনসিংহ", "Narsingdi": "নরসিংদী", "Natore": "নাটোর",
+    "Nilphamari": "নীলফামারী", "Pabna": "পাবনা", "Rajshahi": "রাজশাহী", "Rangpur": "রংপুর",
+    "Sirajganj": "সিরাজগঞ্জ", "Sylhet": "সিলেট", "Tangail": "টাঙ্গাইল", "Thakurgaon": "ঠাকুরগাঁও",
+}
+
+
+def build_spots():
+    spots = pd.read_csv(ROOT / "data/raw/deadly_roads/blackspots.csv")
+    assert set(spots["highway"]) <= set(HIGHWAY_BN), set(spots["highway"]) - set(HIGHWAY_BN)
+    assert set(spots["district"]) <= set(DISTRICT_BN), set(spots["district"]) - set(DISTRICT_BN)
+    # Located at a km post or routed along the highway = exact; upazila centre or estimate = approximate.
+    exact = spots["lat_lng_source"].str.contains(r"km post|routed", case=False) & \
+        ~spots["lat_lng_source"].str.contains("not located", case=False)
+    records = [
+        {
+            "lat": round(r.lat, 5), "lng": round(r.lng, 5), "highway": r.highway,
+            "place": r.name_place, "district": DISTRICT_BN[r.district], "year": int(r.year_listed),
+            "detail": None if pd.isna(r.severity_or_rank) else r.severity_or_rank,
+            "exact": bool(e), "source_url": r.source_url,
+        }
+        for r, e in zip(spots.itertuples(), exact)
+    ]
+    payload = {"highways": HIGHWAY_BN, "spots": records}
+    (OUT / "blackspots.json").write_text(json.dumps(payload, ensure_ascii=False, separators=(",", ":")))
+    return len(records), int(exact.sum())
+
+
 if __name__ == "__main__":
     OUT.mkdir(parents=True, exist_ok=True)
     build_boundaries()
     n = build_accidents()
-    print(f"wrote {OUT / 'divisions.geojson'} and {OUT / 'accidents.json'} ({n} rows)")
+    n_spots, n_exact = build_spots()
+    print(f"wrote {OUT / 'divisions.geojson'}, {OUT / 'accidents.json'} ({n} rows), "
+          f"{OUT / 'blackspots.json'} ({n_spots} spots, {n_exact} exact)")
