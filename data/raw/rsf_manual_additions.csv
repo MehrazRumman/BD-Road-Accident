@@ -17,3 +17,13 @@ division,2021,5,Mymensingh,26,27,,RSF,https://thefinancialexpress.com.bd/nationa
 division,2021,11,Dhaka,83,104,,RSF,https://thefinancialexpress.com.bd/national/road-crashes-claim-413-lives-in-november-1638623303,highest
 division,2021,11,Barishal,22,24,,RSF,https://thefinancialexpress.com.bd/national/road-crashes-claim-413-lives-in-november-1638623303,lowest
 division,2021,12,Dhaka,102,113,,RSF,https://www.tbsnews.net/bangladesh/december-sees-418-deaths-road-accidents-351778,highest
+monthly,2024,6,all,726,644,1082,RSF,https://www.tbsnews.net/bangladesh/37-increase-fatalities-june-compared-may-road-safety-foundation-899971,published 2024-07-15
+monthly,2024,7,all,452,487,679,RSF,https://www.tbsnews.net/bangladesh/487-people-die-452-road-accidents-july-rsf-917271,published 2024-08-15
+vehicle,2024,6,motorcycle,,227,,RSF,https://www.tbsnews.net/bangladesh/37-increase-fatalities-june-compared-may-road-safety-foundation-899971,
+vehicle,2024,7,motorcycle,,156,,RSF,https://www.tbsnews.net/bangladesh/487-people-die-452-road-accidents-july-rsf-917271,
+vehicle,2024,7,three_wheeler,,103,,RSF,https://www.tbsnews.net/bangladesh/487-people-die-452-road-accidents-july-rsf-917271,
+vehicle,2024,7,truck_pickup_goods,,33,,RSF,https://www.tbsnews.net/bangladesh/487-people-die-452-road-accidents-july-rsf-917271,
+vehicle,2024,7,bus,,26,,RSF,https://www.tbsnews.net/bangladesh/487-people-die-452-road-accidents-july-rsf-917271,
+vehicle,2024,7,bicycle_rickshaw,,21,,RSF,https://www.tbsnews.net/bangladesh/487-people-die-452-road-accidents-july-rsf-917271,
+vehicle,2024,7,car_microbus,,20,,RSF,https://www.tbsnews.net/bangladesh/487-people-die-452-road-accidents-july-rsf-917271,
+vehicle,2024,7,local_vehicle,,14,,RSF,https://www.tbsnews.net/bangladesh/487-people-die-452-road-accidents-july-rsf-917271,
