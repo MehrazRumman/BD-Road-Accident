@@ -353,7 +353,9 @@
   const bn = (n, d = 0) => Number(n).toLocaleString("bn-BD", { maximumFractionDigits: d, minimumFractionDigits: d });
   const bnYear = y => bn(y).replace(/,/g, "");
 
-  const load = url => fetch(url).then(r => { if (!r.ok) throw new Error(`${url}: ${r.status}`); return r.json(); });
+  // "no-cache" revalidates with the server on every visit, so the data files are never mixed across versions
+  // (GitHub Pages lets browsers keep them for 10 minutes otherwise).
+  const load = url => fetch(url, { cache: "no-cache" }).then(r => { if (!r.ok) throw new Error(`${url}: ${r.status}`); return r.json(); });
   let geo, data, spotData, districts;
   try {
     if (!window.L) throw new Error("Leaflet did not load");
