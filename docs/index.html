@@ -82,7 +82,7 @@
   .leaflet-overlay-pane svg { filter: drop-shadow(0 8px 14px rgba(11,61,34,.22)); }
   .map-reset a { width: auto !important; padding: 0 10px; font-size: 13px; font-family: inherit; white-space: nowrap; }
   .leaflet-container { font-family: inherit; }
-  /* Clicking a division focuses its SVG path; hide the browser's square focus box (selection is shown by the orange outline). */
+  /* Clicking a division focuses its SVG path; hide the browser's square focus box (selection is shown by the dark green outline). */
   .leaflet-container path.leaflet-interactive:focus, .leaflet-container .leaflet-interactive:focus { outline: none; }
   .div-label {
     background: rgba(255,255,255,.88); border-radius: 8px; padding: 2px 7px;
@@ -191,7 +191,7 @@
   .empty { color: var(--ink-2); font-size: 14px; padding: 4px 0; }
 
   /* Trend */
-  #trend { width: 100%; height: 190px; display: block; }
+  #trend { width: 100%; height: 190px; display: block; touch-action: pan-y; }
   .keys { display: flex; flex-wrap: wrap; gap: 14px; font-size: 13px; color: var(--ink-2); margin-bottom: 4px; }
   .keys span { display: inline-flex; align-items: center; gap: 6px; }
   .keys i { width: 16px; height: 3px; border-radius: 2px; display: inline-block; }
@@ -236,7 +236,7 @@
       <h2 id="trend-title">মাসভিত্তিক নিহত: সারা দেশ</h2>
       <div class="keys" id="keys"></div>
       <svg id="trend" role="img" aria-label="মাসভিত্তিক প্রবণতা"></svg>
-      <div class="readout" id="readout">চার্টের উপর মাউস রাখুন। কমলা ছায়া = বাছাই করা সময়।</div>
+      <div class="readout" id="readout">চার্টের উপর মাউস রাখুন বা আঙুল টানুন। ধূসর ছায়া = বাছাই করা সময়।</div>
     </section>
 
     <section class="card">
@@ -586,7 +586,7 @@
     const dots = (s, c) => s.map((v, i) => v != null && (s[i - 1] == null && s[i + 1] == null)
       ? `<circle cx="${x(i)}" cy="${y(v)}" r="2.5" fill="${c}"/>` : "").join("");
     const shade = CALENDAR.map((c, i) => inPeriod(c.y, c.m) && !(state.year === "all" && state.month === "all")
-      ? `<rect x="${x(i) - step / 2}" y="${P.t}" width="${step}" height="${H - P.t - P.b}" fill="#eb6834" opacity=".12"/>` : "").join("");
+      ? `<rect x="${x(i) - step / 2}" y="${P.t}" width="${step}" height="${H - P.t - P.b}" fill="#52514e" opacity=".1"/>` : "").join("");
     const grid = [0, 0.5, 1].map(f => {
       const v = max / 1.1 * f, py = y(v);
       return `<line x1="${P.l}" x2="${W - P.r}" y1="${py}" y2="${py}" stroke="#e1e0d9"/>
@@ -611,14 +611,17 @@
     if (clear) clear.addEventListener("click", () => select(null));
     const readout = document.getElementById("readout"), cursor = svg.querySelector("#cursor");
     const hit = svg.querySelector("#hit");
-    hit.addEventListener("mousemove", e => {
+    const show = e => {
       const r = svg.getBoundingClientRect();
       const i = Math.max(0, Math.min(CALENDAR.length - 1, Math.round(((e.clientX - r.left) * W / r.width - P.l) / step)));
       const c = CALENDAR[i], v = (s) => s[i] == null ? "–" : bn(s[i]);
       cursor.setAttribute("x1", x(i)); cursor.setAttribute("x2", x(i)); cursor.setAttribute("opacity", ".5");
       readout.textContent = `${BN_MONTHS[c.m - 1]} ${bnYear(c.y)} · বিআরটিএ: ${v(brtaSeries)}` + (who ? "" : ` · রোড সেফটি ফাউন্ডেশন: ${v(rsfSeries)}`);
-    });
-    hit.addEventListener("mouseleave", () => cursor.setAttribute("opacity", "0"));
+    };
+    // Pointer events cover mouse, touch and pen: tap or drag across the chart on a phone.
+    hit.addEventListener("pointermove", show);
+    hit.addEventListener("pointerdown", show);
+    hit.addEventListener("pointerleave", () => cursor.setAttribute("opacity", "0"));
   }
 
   function render() {
