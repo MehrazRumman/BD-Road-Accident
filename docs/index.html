@@ -318,10 +318,17 @@
     const rs = rsf.filter(r => inPeriod(r.year, r.month));
     const expected = CALENDAR.filter(c => inPeriod(c.y, c.m)).length;
     if (!rs.length) return null;
-    const sum = k => rs.some(r => r[k] == null) ? null : rs.reduce((s, r) => s + r[k], 0);
-    const note = rs.length === expected ? (expected > 1 ? `${bn(rs.length)} মাসিক প্রতিবেদনের যোগফল` : "মাসিক প্রতিবেদন")
-                                         : `${bn(expected)} মাসের মধ্যে ${bn(rs.length)} মাসের তথ্য`;
-    return { accidents: sum("accidents"), deaths: sum("deaths"), injuries: sum("injuries"), note };
+    const partial = {};
+    const sum = k => {
+      const have = rs.filter(r => r[k] != null);
+      partial[k] = have.length < rs.length;
+      return have.length ? have.reduce((s, r) => s + r[k], 0) : null;
+    };
+    let note = rs.length === expected ? (expected > 1 ? `${bn(rs.length)} মাসিক প্রতিবেদনের যোগফল` : "মাসিক প্রতিবেদন")
+                                       : `${bn(expected)} মাসের মধ্যে ${bn(rs.length)} মাসের তথ্য`;
+    const out = { accidents: sum("accidents"), deaths: sum("deaths"), injuries: sum("injuries"), partial };
+    if (Object.values(partial).some(Boolean)) note += " · * কিছু মাসে এই সংখ্যা প্রকাশিত হয়নি";
+    return { ...out, note };
   }
   const fmt = (v, m) => m === "rate" ? bn(v, 1) : bn(v);
 
@@ -440,7 +447,7 @@
       accidents: t.accidents + current.agg[d].accidents, deaths: t.deaths + current.agg[d].deaths,
       injuries: t.injuries + current.agg[d].injuries,
     }), { accidents: 0, deaths: 0, injuries: 0 }) : null;
-    const cell = (o, k) => o && o[k] != null ? bn(o[k]) : `<span class="na">তথ্য নেই</span>`;
+    const cell = (o, k) => o && o[k] != null ? bn(o[k]) + (o.partial && o.partial[k] ? "*" : "") : `<span class="na">তথ্য নেই</span>`;
     const brtaNote = b ? `${bn(current.nMonths)} মাসিক প্রতিবেদন` : "২০২৩ সাল থেকে";
     document.getElementById("totals").innerHTML = `
       <tr><th></th><th>দুর্ঘটনা</th><th>নিহত</th><th>আহত</th></tr>
