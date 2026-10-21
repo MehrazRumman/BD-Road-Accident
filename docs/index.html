@@ -6,7 +6,8 @@
 <title>বাংলাদেশ সড়ক দুর্ঘটনা মানচিত্র</title>
 <meta name="description" content="বাংলাদেশের বিভাগভিত্তিক সড়ক দুর্ঘটনা, নিহত ও আহতের সংখ্যা (বিআরটিএ ২০২৩–২০২৬) এবং রোড সেফটি ফাউন্ডেশনের জাতীয় হিসাব (২০২১–২০২৬)।">
 <link rel="icon" type="image/svg+xml" href="logo.svg">
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -296,7 +297,8 @@
 </footer>
 </div>
 
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+  integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script>
 (async function () {
   const BN_MONTHS = ["জানুয়ারি", "ফেব্রুয়ারি", "মার্চ", "এপ্রিল", "মে", "জুন", "জুলাই", "আগস্ট", "সেপ্টেম্বর", "অক্টোবর", "নভেম্বর", "ডিসেম্বর"];
@@ -319,11 +321,19 @@
   const bn = (n, d = 0) => Number(n).toLocaleString("bn-BD", { maximumFractionDigits: d, minimumFractionDigits: d });
   const bnYear = y => bn(y).replace(/,/g, "");
 
-  const [geo, data, spotData] = await Promise.all([
-    fetch("data/divisions.geojson").then(r => r.json()),
-    fetch("data/accidents.json").then(r => r.json()),
-    fetch("data/blackspots.json").then(r => r.json()),
-  ]);
+  const load = url => fetch(url).then(r => { if (!r.ok) throw new Error(`${url}: ${r.status}`); return r.json(); });
+  let geo, data, spotData;
+  try {
+    if (!window.L) throw new Error("Leaflet did not load");
+    [geo, data, spotData] = await Promise.all(
+      ["data/divisions.geojson", "data/accidents.json", "data/blackspots.json"].map(load));
+  } catch (err) {
+    console.error(err);
+    const box = document.getElementById("nodata");
+    box.querySelector("div").innerHTML = "<b>মানচিত্রের তথ্য লোড করা যায়নি</b>ইন্টারনেট সংযোগ দেখে পাতাটি আবার খুলুন।";
+    box.style.display = "grid";
+    return;
+  }
   const toObjs = (fields, rows) => rows.map(r => Object.fromEntries(fields.map((f, i) => [f, r[i]])));
   const brta = toObjs(data.brta.fields, data.brta.rows);
   const brtaVeh = toObjs(data.brta.vehicle_fields, data.brta.vehicle);
