@@ -1,0 +1,19 @@
+table,year,month,category,accidents,deaths,injuries,source,source_url,note
+monthly,2021,3,all,409,513,598,RSF,https://old.thefinancialexpress.com.bd/national/road-crashes-leave-513-dead-and-598-injured-last-month-report-1617611464,published 2021-04-05
+monthly,2021,4,all,397,452,,RSF,https://thefinancialexpress.com.bd/national/562-killed-549-injured-in-road-accidents-in-may-1622711546,back-reference in May 2021 report
+monthly,2021,10,all,346,407,,RSF,https://thefinancialexpress.com.bd/national/road-crashes-claim-413-lives-in-november-1638623303,back-reference in Nov 2021 report
+monthly,2021,11,all,379,413,532,RSF,https://thefinancialexpress.com.bd/national/road-crashes-claim-413-lives-in-november-1638623303,published 2021-12-04
+monthly,2021,12,all,383,418,497,RSF,https://www.tbsnews.net/bangladesh/december-sees-418-deaths-road-accidents-351778,published 2022-01-01; RSF says the total includes waterway accidents
+monthly,2022,3,all,458,589,647,RSF,https://en.prothomalo.com/bangladesh/accident/child-death-in-road-accidents-on-the-rise-road-safety-foundation,published 2022-04-05
+vehicle,2021,3,motorcycle,138,147,,RSF,https://old.thefinancialexpress.com.bd/national/road-crashes-leave-513-dead-and-598-injured-last-month-report-1617611464,
+vehicle,2021,5,motorcycle,228,217,,RSF,https://thefinancialexpress.com.bd/national/562-killed-549-injured-in-road-accidents-in-may-1622711546,
+vehicle,2021,11,motorcycle,158,184,,RSF,https://thefinancialexpress.com.bd/national/road-crashes-claim-413-lives-in-november-1638623303,
+vehicle,2021,12,motorcycle,167,178,,RSF,https://www.tbsnews.net/bangladesh/december-sees-418-deaths-road-accidents-351778,
+vehicle,2022,3,motorcycle,,220,,RSF,https://en.prothomalo.com/bangladesh/accident/child-death-in-road-accidents-on-the-rise-road-safety-foundation,37.42% of 589 deaths
+division,2021,3,Dhaka,119,136,,RSF,https://old.thefinancialexpress.com.bd/national/road-crashes-leave-513-dead-and-598-injured-last-month-report-1617611464,highest
+division,2021,3,Rangpur,20,18,,RSF,https://old.thefinancialexpress.com.bd/national/road-crashes-leave-513-dead-and-598-injured-last-month-report-1617611464,lowest
+division,2021,5,Dhaka,115,144,,RSF,https://thefinancialexpress.com.bd/national/562-killed-549-injured-in-road-accidents-in-may-1622711546,highest
+division,2021,5,Mymensingh,26,27,,RSF,https://thefinancialexpress.com.bd/national/562-killed-549-injured-in-road-accidents-in-may-1622711546,lowest
+division,2021,11,Dhaka,83,104,,RSF,https://thefinancialexpress.com.bd/national/road-crashes-claim-413-lives-in-november-1638623303,highest
+division,2021,11,Barishal,22,24,,RSF,https://thefinancialexpress.com.bd/national/road-crashes-claim-413-lives-in-november-1638623303,lowest
+division,2021,12,Dhaka,102,113,,RSF,https://www.tbsnews.net/bangladesh/december-sees-418-deaths-road-accidents-351778,highest
