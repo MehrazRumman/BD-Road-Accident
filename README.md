@@ -1,7 +1,18 @@
-# BD-Road-Accident
+# Bangladesh Road Accidents 2021–2026
 
-Road accidents in Bangladesh from **January 2021 to September 2026**: data collection, cleaning and analysis in
-Jupyter notebooks.
+![Python](https://img.shields.io/badge/Python-3-blue) ![Jupyter](https://img.shields.io/badge/Jupyter-Notebook-orange)
+![pandas](https://img.shields.io/badge/pandas-matplotlib-150458)
+
+An analysis of road accidents in Bangladesh from **January 2021 to September 2026**. The project collects
+Road Safety Foundation figures published in the press, cleans them into source-linked tables, and analyses deaths by
+year, vehicle type, division and time of year in Jupyter notebooks.
+
+| 2025 at a glance | |
+|---|---|
+| Road deaths | **7,359** (about 20 a day) |
+| Accidents | **7,584** |
+| Injured | **16,476** |
+| Motorcycle share of deaths | **36%** |
 
 ![Road deaths per year](figures/01_deaths_per_year.png)
 
