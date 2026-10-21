@@ -9,9 +9,11 @@ monthly reports. It cleans them into source-linked tables and analyses deaths by
 time of year in Jupyter notebooks.
 
 **🗺️ Interactive map (Bangla): [mehrazrumman.github.io/BD-Road-Accident](https://mehrazrumman.github.io/BD-Road-Accident/)**.
-It shows accidents, deaths and injuries by division (BRTA, 2023–2026) with year and month filters, the 215
-accident-prone spots on the national highways, a monthly trend from both sources, and deaths by vehicle type.
-The filters are kept in the address, so a view can be shared as a link. The page
+It shows accidents, deaths and injuries by division (BRTA, 2023–2026) with year and month filters, a district filter
+covering all 64 districts, the 215 accident-prone spots on the national highways, a monthly trend from both sources, and deaths by vehicle type.
+The filters are kept in the address, so a view can be shared as a link. No source publishes accident counts by
+district, so choosing a district zooms to it and lists its accident-prone spots, while the figures stay at division
+level. The page
 is built from this repository's data by `scripts/build_map_data.py` and lives in `docs/`.
 
 [![The interactive map](figures/00_map.png)](https://mehrazrumman.github.io/BD-Road-Accident/)
@@ -43,6 +45,7 @@ Two independent sources, kept as separate series and never added together:
 | `data/raw/rsf_manual_additions.csv` | Extra RSF figures, checked against the original articles |
 | `data/raw/brta_*.csv` | BRTA monthly reports, Jan 2023 – Sep 2026 (see [`data/raw/brta/README.md`](data/raw/brta/README.md)) |
 | BBS Census 2022 | Population by division |
+| [geoBoundaries](https://www.geoboundaries.org) | Division (CC BY 4.0) and district (BBS / OCHA, CC BY 3.0 IGO) boundaries |
 
 Every row in `data/processed/` has a `source` and a `source_url` column pointing to the article or report it came
 from. Between them, the two sources cover 61 of the 69 months.
