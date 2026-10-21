@@ -3,9 +3,10 @@
 ![Python](https://img.shields.io/badge/Python-3-blue) ![Jupyter](https://img.shields.io/badge/Jupyter-Notebook-orange)
 ![pandas](https://img.shields.io/badge/pandas-matplotlib-150458)
 
-An analysis of road accidents in Bangladesh from **January 2021 to September 2026**. The project collects
-Road Safety Foundation figures published in the press, cleans them into source-linked tables, and analyses deaths by
-year, vehicle type, division and time of year in Jupyter notebooks.
+An analysis of road accidents in Bangladesh from **January 2021 to September 2026**. The project combines two
+sources, Road Safety Foundation figures published in the press and the road transport authority's (BRTA) official
+monthly reports. It cleans them into source-linked tables and analyses deaths by year, vehicle type, division and
+time of year in Jupyter notebooks.
 
 | 2025 at a glance | |
 |---|---|
@@ -18,28 +19,39 @@ year, vehicle type, division and time of year in Jupyter notebooks.
 
 ## Data
 
-All figures are from the **Road Safety Foundation (RSF)**, a Bangladeshi NGO that counts road accidents reported by
-national newspapers, online portals and TV, and publishes monthly and annual reports. RSF does not publish a
-downloadable dataset, so the numbers are transcribed from the press articles that reproduce its reports.
+Two independent sources, kept as separate series and never added together:
+
+- **Road Safety Foundation (RSF)**: a Bangladeshi NGO that counts road accidents reported by national newspapers,
+  online portals and TV. It covers the whole period, but the monthly reports reach the public only through press
+  articles, so the numbers are transcribed from those.
+- **Bangladesh Road Transport Authority (BRTA)**: the government's official monthly reports, compiled by its
+  divisional offices. They cover every month from January 2023 to September 2026, with all 8 divisions and 13
+  vehicle types. The reports are scanned PDFs on [brta.gov.bd](https://brta.gov.bd), transcribed by hand and checked
+  against each report's own totals.
 
 | Source | Used for |
 |---|---|
 | [Deadly Roads: Bangladesh 2000–2025](https://github.com/ahasan722/bangladesh-road-crashes-2000-2025) (CC BY 4.0) | Most RSF annual, monthly and breakdown figures, each with its press citation |
-| `data/raw/rsf_manual_additions.csv` | Extra RSF months for 2021–2022, checked against the original articles |
+| `data/raw/rsf_manual_additions.csv` | Extra RSF figures, checked against the original articles |
+| `data/raw/brta_*.csv` | BRTA monthly reports, Jan 2023 – Sep 2026 (see [`data/raw/brta/README.md`](data/raw/brta/README.md)) |
 | BBS Census 2022 | Population by division |
 
-Every row in `data/processed/` has a `source` and a `source_url` column pointing to the article it came from.
+Every row in `data/processed/` has a `source` and a `source_url` column pointing to the article or report it came
+from. Between them, the two sources cover 61 of the 69 months.
 
 ### Processed tables
 
-| File | Contents |
-|---|---|
-| `monthly_national.csv` | Accidents, deaths, injuries per month (69 months; 49 with a report) |
-| `annual_national.csv` | Annual totals 2021–2025, plus a partial 2026 |
-| `vehicle_deaths.csv` | Deaths by vehicle type (motorcycle, three-wheeler, bus, truck, ...) |
-| `division.csv` | Accidents, deaths or share of accidents by division |
-| `time_of_day.csv` | Share of accidents by time of day |
-| `eid_periods.csv` | Accidents and deaths during Eid travel windows |
+| File | Source | Contents |
+|---|---|---|
+| `monthly_national.csv` | RSF | Accidents, deaths, injuries per month (69 months; 51 with a report) |
+| `annual_national.csv` | RSF | Annual totals 2021–2025, plus a partial 2026 |
+| `vehicle_deaths.csv` | RSF | Deaths by vehicle type (motorcycle, three-wheeler, bus, truck, ...) |
+| `division.csv` | RSF | Accidents, deaths or share of accidents by division |
+| `time_of_day.csv` | RSF | Share of accidents by time of day |
+| `eid_periods.csv` | RSF | Accidents and deaths during Eid travel windows |
+| `brta_monthly_national.csv` | BRTA | Accidents, deaths, injuries per month (45 months, none missing) |
+| `brta_division.csv` | BRTA | All 8 divisions, every month |
+| `brta_vehicle_deaths.csv` | BRTA | Deaths for 13 vehicle types, every month from March 2023 |
 
 ## Project structure
 
