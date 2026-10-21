@@ -105,6 +105,16 @@
   }
   .seg button[aria-pressed="true"] { background: var(--brta); border-color: var(--brta); color: #fff; font-weight: 600; }
 
+  .spots-row { display: grid; gap: 8px; border-top: 1px solid var(--line); padding-top: 12px; }
+  .toggle { display: flex; align-items: center; gap: 8px; font-weight: 500; cursor: pointer; }
+  .toggle input { width: 18px; height: 18px; accent-color: var(--rsf); }
+  .legend .spot-key { display: grid; gap: 3px; margin-top: 8px; padding-top: 6px; border-top: 1px solid var(--line); }
+  .legend .spot-key span { display: flex; align-items: center; gap: 6px; }
+  .legend .spot-key i { width: 10px; height: 10px; border-radius: 50%; border: 2px solid #eb6834; display: inline-block; }
+  .leaflet-popup-content { font-family: inherit; font-size: 13px; line-height: 1.5; margin: 12px 14px; }
+  .leaflet-popup-content b { font-size: 14px; }
+  .leaflet-popup-content .meta { color: var(--ink-2); }
+
   /* Totals */
   .totals { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
   .totals th { font-size: 13px; color: var(--ink-2); font-weight: 500; text-align: right; padding: 0 0 6px; }
@@ -185,6 +195,11 @@
         <button type="button" data-m="injuries" aria-pressed="false">আহত</button>
         <button type="button" data-m="rate" aria-pressed="false">প্রতি ১০ লাখে নিহত</button>
       </div>
+      <div class="spots-row">
+        <label class="toggle"><input type="checkbox" id="spots-on" checked> দুর্ঘটনাপ্রবণ স্থান দেখাও</label>
+        <label class="field">মহাসড়ক <select id="highway"></select></label>
+        <div class="sub" id="spots-count" style="margin:0"></div>
+      </div>
     </div>
 
     <div class="card">
@@ -240,9 +255,10 @@
   const bn = (n, d = 0) => Number(n).toLocaleString("bn-BD", { maximumFractionDigits: d, minimumFractionDigits: d });
   const bnYear = y => bn(y).replace(/,/g, "");
 
-  const [geo, data] = await Promise.all([
+  const [geo, data, spotData] = await Promise.all([
     fetch("data/divisions.geojson").then(r => r.json()),
     fetch("data/accidents.json").then(r => r.json()),
+    fetch("data/blackspots.json").then(r => r.json()),
   ]);
   const toObjs = (fields, rows) => rows.map(r => Object.fromEntries(fields.map((f, i) => [f, r[i]])));
   const brta = toObjs(data.brta.fields, data.brta.rows);
@@ -361,6 +377,43 @@
     interactive: false, icon: L.divIcon({ className: "label-icon", html: "", iconSize: [0, 0] }),
   }).addTo(map)]));
 
+  // ---------- Accident-prone spots ----------
+  map.createPane("spots").style.zIndex = 650;
+  const highwaySel = document.getElementById("highway");
+  const HW = spotData.highways;
+  const hwOrder = Object.keys(HW).sort((a, b) => parseInt(a.slice(1)) - parseInt(b.slice(1)));
+  highwaySel.innerHTML = `<option value="all">সব মহাসড়ক</option>` +
+    hwOrder.map(h => `<option value="${h}">${h}: ${HW[h]}</option>`).join("");
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+  const spotLayer = L.layerGroup().addTo(map);
+  const spotMarkers = spotData.spots.map(s => {
+    const mk = L.circleMarker([s.lat, s.lng], {
+      pane: "spots", radius: s.exact ? 5.5 : 5, weight: 2, color: "#eb6834",
+      fillColor: s.exact ? "#eb6834" : "#ffffff", fillOpacity: 1,
+    });
+    const head = `<b>${esc(s.place)}</b><div class="meta">জেলা: ${s.district} · মহাসড়ক ${s.highway}: ${HW[s.highway]}</div>`;
+    const where = s.exact ? "অবস্থান: কিলোমিটার পোস্ট বা সড়ক ধরে নির্ধারিত" : "অবস্থান: আনুমানিক (উপজেলা পর্যায়ে)";
+    mk.bindTooltip(`${head}<div class="meta">তালিকাভুক্ত: ${bnYear(s.year)}</div>`, { className: "tip", direction: "top", offset: [0, -6] });
+    mk.bindPopup(`${head}<div class="meta">তালিকাভুক্ত: ${bnYear(s.year)} · ${where}</div>` +
+      (s.detail ? `<div style="margin-top:6px">${esc(s.detail)}</div>` : "") +
+      `<div style="margin-top:6px"><a href="${esc(s.source_url)}" target="_blank" rel="noopener">মূল সূত্র</a></div>`, { maxWidth: 300 });
+    return { s, mk };
+  });
+  function renderSpots() {
+    const on = document.getElementById("spots-on").checked;
+    const hw = highwaySel.value;
+    highwaySel.disabled = !on;
+    spotLayer.clearLayers();
+    const shown = on ? spotMarkers.filter(({ s }) => hw === "all" || s.highway === hw) : [];
+    shown.forEach(({ mk }) => spotLayer.addLayer(mk));
+    document.getElementById("spots-count").textContent = on
+      ? `${bn(shown.length)}টি স্থান · জাতীয় মহাসড়কের দুর্ঘটনাপ্রবণ স্থানের তালিকা (সওজ, হাইওয়ে পুলিশ, এআরআই-বুয়েট, আরএসএফ)`
+      : "";
+    renderLegend();
+  }
+  document.getElementById("spots-on").addEventListener("change", renderSpots);
+  highwaySel.addEventListener("change", renderSpots);
+
   // ---------- Panels ----------
   function rangeBreaks(values) {
     const lo = Math.min(...values), hi = Math.max(...values);
@@ -369,12 +422,17 @@
   }
   function renderLegend() {
     const el = document.getElementById("legend");
-    if (!current.hasData) { el.style.display = "none"; return; }
+    const spotsOn = document.getElementById("spots-on").checked;
+    const spotKey = spotsOn ? `<div class="spot-key">
+        <span><i style="background:#eb6834"></i>দুর্ঘটনাপ্রবণ স্থান (নির্দিষ্ট)</span>
+        <span><i style="background:#fff"></i>দুর্ঘটনাপ্রবণ স্থান (আনুমানিক)</span></div>` : "";
+    if (!current.hasData && !spotsOn) { el.style.display = "none"; return; }
     el.style.display = "";
+    if (!current.hasData) { el.innerHTML = spotKey.replace('class="spot-key"', 'class="spot-key" style="margin:0;padding:0;border:0"'); return; }
     const m = state.measure, vals = DIVISIONS.map(d => current.agg[d][m]);
     el.innerHTML = `<div class="title">${MEASURES[m]}</div>
       <div class="scale">${RAMP.map(c => `<i style="background:${c}"></i>`).join("")}</div>
-      <div class="ticks"><span>${fmt(Math.min(...vals), m)}</span><span>${fmt(Math.max(...vals), m)}</span></div>`;
+      <div class="ticks"><span>${fmt(Math.min(...vals), m)}</span><span>${fmt(Math.max(...vals), m)}</span></div>${spotKey}`;
   }
   function renderTotals() {
     const r = rsfTotals();
@@ -492,6 +550,7 @@
   let resizeTimer;
   window.addEventListener("resize", () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(renderTrend, 120); });
   render();
+  renderSpots();
 })();
 </script>
 </body>
